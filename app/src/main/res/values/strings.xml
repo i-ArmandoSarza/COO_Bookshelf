@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">COO_Bookshelf</string>
+    <string name="Title_Text_View">Capital Citty Otters Bookshelf\nYour personal libary</string>
+    <string name="First_Name_Edit_Box">Enter your first name</string>
+    <string name="Email_Text_Box">Enter your email</string>
+    <string name="Password_Text_Box">Enter your password</string>
+    <string name="FirstName_Title_Box">First Name</string>
+    <string name="Email_Title_Box">Email</string>
+    <string name="Password_Title_Box">Password</string>
+    <string name="LOGIN_BUTTON">LOGIN</string>
+    <string name="Login_Logo">Login Logo Bookshelf</string>
+    <string name="Title_Login_Page">Capital City Otters Bookshelf</string>
+    <string name="Message_Logo">Your personal library</string>
+    <string name="SignUp_Link">Don\'t have an account? Sign Up</string>
 </resources>
