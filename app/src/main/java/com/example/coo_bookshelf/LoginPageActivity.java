@@ -33,6 +33,17 @@ public class LoginPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // When the "Sign Up" text is clicked on the login screen
+        binding.signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Make a plan to go to the SignUpActivity
+                Intent intent = SignUpActivity.signUpIntentFactory(LoginPageActivity.this);
+                startActivity(intent);
+            }
+        });
+
     }
 
     /** Lets us jump to this activity from other activities */

@@ -9,4 +9,12 @@ import com.example.coo_bookshelf.database.BookshelfDatabase;
 public class Category {
     @PrimaryKey(autoGenerate = true)
     private int categoryID;
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
 }

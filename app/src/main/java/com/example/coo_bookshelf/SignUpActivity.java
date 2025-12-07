@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-=
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coo_bookshelf.databinding.ActivitySignUpBinding;
@@ -57,9 +56,19 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // Make a default user for testing purposes.
                 // TODO: Replace this with actual user creation logic.
-                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext()), 0);
+                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), 0);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        // When the "Log In" text is clicked on the sign up screen
+        binding.loginPageLinkTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Make a plan to go to the LoginPageActivity
+                Intent intent = LoginPageActivity.loginIntentFactory(SignUpActivity.this);
+                startActivity(intent);
             }
         });
     }
