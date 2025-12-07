@@ -12,10 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COO_Bookshelf">
         <activity
-            android:name=".LoginPageActivity"
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

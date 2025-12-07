@@ -63,4 +63,20 @@ public class BookCategory {
   private int bookID;
   @ColumnInfo(name="CategoryID")
   private int categoryID;
+
+    public int getBookID() {
+        return bookID;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
 }
