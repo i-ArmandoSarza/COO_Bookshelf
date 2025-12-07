@@ -12,4 +12,9 @@
     <string name="Title_Login_Page">Capital City Otters Bookshelf</string>
     <string name="Message_Logo">Your personal library</string>
     <string name="SignUp_Link">Don\'t have an account? Sign Up</string>
+    <string name="password_confirmation">Password Confirmation</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="create_account">CREATE ACCOUNT</string>
+    <string name="login_page_link">Already have an account? Log In</string>
+    <string name="sign_up">Sign Up</string>
 </resources>
