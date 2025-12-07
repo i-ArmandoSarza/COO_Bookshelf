@@ -29,6 +29,9 @@ public interface UserDAO {
   @Query("SELECT * FROM user WHERE userId == :userId ")
   LiveData<User> getUserByUserId(int userId);
 
+  // Get userIs by the user's email address.
+  @Query("SELECT UserID FROM User WHERE email = :email ")
+  int getUserByUserEmailSync(String email);
   // Get users by users email address.
   @Query("SELECT * FROM User WHERE email = :email ")
   LiveData<User> getUserByUserEmail(String email);
