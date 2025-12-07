@@ -76,7 +76,7 @@
 
     <!-- Email input -->
     <EditText
-        android:id="@+id/emailLoginEditText"
+        android:id="@+id/emailSignUpEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -99,11 +99,11 @@
         android:text="@string/Password_Title_Box"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@id/emailSignUpEditText" />
 
     <!-- Password input -->
     <EditText
-        android:id="@+id/passwordLoginEditText"
+        android:id="@+id/passwordSignUpEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -126,7 +126,7 @@
         android:text="@string/password_confirmation"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText" />
 
     <!-- Confirm password input -->
     <EditText
@@ -145,7 +145,7 @@
 
     <!-- Sign up button -->
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -170,6 +170,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
