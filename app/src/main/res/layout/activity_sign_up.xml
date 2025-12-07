@@ -5,18 +5,18 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundlogin"
-    tools:context=".LoginPageActivity">
+    android:background="@drawable/backgroundsignup"
+    tools:context=".SignUpActivity">
 
     <!-- Logo -->
     <ImageView
         android:id="@+id/LogoLoginImageView"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:contentDescription="@string/Login_Logo"
         android:src="@drawable/bookshelflogo"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,26 +26,41 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:gravity="center"
+        android:gravity="start"
         android:text="@string/Title_Login_Page"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/LogoLoginImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LogoLoginImageView" />
+        app:layout_constraintStart_toEndOf="@+id/LogoLoginImageView"
+        app:layout_constraintTop_toTopOf="@+id/LogoLoginImageView" />
 
     <!--Title Subtext -->
     <TextView
-        android:id="@+id/titleSubTitleTextView"
+        android:id="@+id/subTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/Message_Logo"
         android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/titleLogInTextView"
+        app:layout_constraintStart_toStartOf="@+id/titleLogInTextView"
+        app:layout_constraintTop_toBottomOf="@+id/titleLogInTextView" />
+
+    <!-- Create Account Title -->
+    <TextView
+        android:id="@+id/SignUpTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleLogInTextView" />
+        app:layout_constraintTop_toBottomOf="@id/subTitleTextView" />
+
 
     <!-- Email label -->
     <TextView
@@ -53,15 +68,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:text="@string/Email_Title_Box"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleSubTitleTextView" />
+        app:layout_constraintTop_toBottomOf="@id/SignUpTitleTextView" />
 
     <!-- Email input -->
     <EditText
-        android:id="@+id/emailLoginEditText"
+        android:id="@+id/emailSignUpEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -84,11 +99,11 @@
         android:text="@string/Password_Title_Box"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@id/emailSignUpEditText" />
 
     <!-- Password input -->
     <EditText
-        android:id="@+id/passwordLoginEditText"
+        android:id="@+id/passwordSignUpEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -101,9 +116,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlePasswordTextView" />
 
-    <!-- Login button -->
+    <!-- Password label -->
+    <TextView
+        android:id="@+id/titleConfirmPasswordTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/password_confirmation"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText" />
+
+    <!-- Confirm password input -->
+    <EditText
+        android:id="@+id/confirmPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/re_enter_password"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleConfirmPasswordTextView" />
+
+    <!-- Sign up button -->
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -111,23 +153,23 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
         android:background="#6F8FAF"
-        android:text="@string/LOGIN_BUTTON"
+        android:text="@string/sign_up"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordLoginEditText" />
+        app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText" />
 
-    <!-- Sign Up link -->
+    <!-- Login page link -->
     <TextView
-        android:id="@+id/signupTextView"
+        android:id="@+id/loginPageLinkTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/SignUp_Link"
+        android:text="@string/login_page_link"
         android:textColor="#191970"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
