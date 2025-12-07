@@ -2,7 +2,9 @@ package com.example.coo_bookshelf.database;
 
 import android.app.Application;
 import android.util.Log;
+import androidx.lifecycle.LiveData;
 import com.example.coo_bookshelf.MainActivity;
+import com.example.coo_bookshelf.database.entities.User;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -39,5 +41,10 @@ public class BookshelfRepository {
   }
 
   // TODO: Implement all user queries.
+  public LiveData<User> getUserByUserEmail(String username) {
+    return userDAO.getUserByUserEmail(username);
+  }
+
+  // book operations
 
 }

@@ -30,7 +30,7 @@ public interface UserDAO {
   LiveData<User> getUserByUserId(int userId);
 
   // Get users by users email address.
-  @Query("SELECT * FROM user WHERE email == :email ")
+  @Query("SELECT * FROM User WHERE email = :email ")
   LiveData<User> getUserByUserEmail(String email);
 
 }

@@ -3,15 +3,15 @@ package com.example.coo_bookshelf.database.entities;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import com.example.coo_bookshelf.database.BookshelfDatabase;
+import com.example.coo_bookshelf.database.DbConfig;
 import java.util.Objects;
 
-@Entity(tableName = BookshelfDatabase.BOOK_TABLE)
+@Entity(tableName = DbConfig.BOOK_TABLE)
 public class Book {
 
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "BookId")
-  private int bookID;
+  private int bookId;
   @ColumnInfo(name = "UserId")
   private int userId;
   @ColumnInfo(name = "Title")
@@ -25,16 +25,16 @@ public class Book {
   private String firstPublishedYear;
   // The OL workId
   // Cover ID is located in https://openlibrary.org/works/OL2089932W
-  @ColumnInfo(name = "WorkId")
-  private String workId;
+  @ColumnInfo(name = "WorksId")
+  private String worksId;
 
-  public Book(int userId, String title, String author, String authorKey, String workId) {
+  public Book(int userId, String title, String author, String authorKey, String worksId) {
     // TODO: Probably will need to update the ctor based on how we plan on using books.
     this.userId = userId;
     this.title = title;
     this.author = author;
     this.authorKey = authorKey;
-    this.workId = workId;
+    this.worksId = worksId;
   }
 
   public String getFirstPublishedYear() {
@@ -52,23 +52,23 @@ public class Book {
       return false;
     }
     Book book = (Book) o;
-    return bookID == book.bookID && userId == book.userId && Objects.equals(title,
+    return bookId == book.bookId && userId == book.userId && Objects.equals(title,
         book.title) && Objects.equals(author, book.author) && Objects.equals(
         authorKey, book.authorKey) && Objects.equals(firstPublishedYear,
-        book.firstPublishedYear) && Objects.equals(workId, book.workId);
+        book.firstPublishedYear) && Objects.equals(worksId, book.worksId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bookID, userId, title, author, authorKey, firstPublishedYear, workId);
+    return Objects.hash(bookId, userId, title, author, authorKey, firstPublishedYear, worksId);
   }
 
-  public int getBookID() {
-    return bookID;
+  public int getBookId() {
+    return bookId;
   }
 
-  public void setBookID(int bookID) {
-    this.bookID = bookID;
+  public void setBookId(int bookId) {
+    this.bookId = bookId;
   }
 
   public int getUserId() {
@@ -103,12 +103,12 @@ public class Book {
     this.authorKey = authorKey;
   }
 
-  public String getWorkId() {
-    return workId;
+  public String getWorksId() {
+    return worksId;
   }
 
-  public void setWorkId(String workId) {
-    this.workId = workId;
+  public void setWorksId(String workId) {
+    this.worksId = workId;
   }
 
 }

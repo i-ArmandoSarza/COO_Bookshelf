@@ -17,14 +17,9 @@ import java.util.concurrent.Executors;
 
 
 @Database(entities = {User.class, Book.class, Category.class,
-    BookCategory.class}, version = 3, exportSchema = false)
+    BookCategory.class}, version = 14, exportSchema = false)
 public abstract class BookshelfDatabase extends RoomDatabase {
 
-  public static final String USER_TABLE = "User";
-  public static final String BOOK_TABLE = "Book";
-  public static final String CATEGORY_TABLE = "Categories";
-  public static final String BOOK_CATEGORY_TABLE = "BookCategories";
-  private final static String DATABASE_NAME = "BookshelfDatabase";
   private static final int NUMBER_OF_THREADS = 4;
 
   // will only have a max of 4 threads in the pool
@@ -37,36 +32,51 @@ public abstract class BookshelfDatabase extends RoomDatabase {
     public void onCreate(@NonNull SupportSQLiteDatabase db) {
       super.onCreate(db);
       // Set up default accounts
-      Log.i(MainActivity.TAG, "DATABASE Created!");
+      Log.i(MainActivity.TAG, "DATABASE Creating users!"); // TODO: Remove this. This is for testing purposes.
       databaseWriteExecutor.execute(() -> {
         UserDAO userDAO = INSTANCE.userDAO();
         userDAO.deleteAll();
-        User admin = new User("admin1", "admin1");
+        User admin = new User("monty@csumb.edu", "admin1");
         admin.setAdmin(true);
         admin.setFirstName("Monty Rey");
         userDAO.insert(admin);
+        Log.i(MainActivity.TAG, "Creating user Monty!");
 
-        User testUser1 = new User("testuser1", "testuser1");
-        testUser1.setFirstName("Katrina");
-        userDAO.insert(testUser1);
+//        User testUser1 = new User("testuser1", "testuser1");
+//        testUser1.setFirstName("Katrina");
+//        userDAO.insert(testUser1);
+        Log.i(MainActivity.TAG, "Creating user Katrina and books record.");
+        db.execSQL(
+        """
+          insert into User (Email, password, firstName, isAdmin)
+          values ('katcsumb', 'katcsumb', 'Katrina', 0);
+        """.stripIndent());
+        db.execSQL(
+      """
+          insert into Book(UserId, Title, Author, AuthorKey, FirstPublishedYear, WorksID)
+          values (last_insert_rowid(), 'Red Rising', 'Pierce Brown', 'OL7621609A', 'October 14, 2025', 'OL17076473W');
+         """.stripIndent());
       });
     }
   };
   static BookshelfDatabase getDatabase(final Context context) {
+    Log.i(MainActivity.TAG, "getDatabase");
     if (INSTANCE == null) {
       synchronized (BookshelfDatabase.class) {
         if (INSTANCE == null) {
           INSTANCE = Room.databaseBuilder(
                   context.getApplicationContext(),
                   BookshelfDatabase.class,
-                  DATABASE_NAME
+                  DbConfig.DATABASE_NAME
               )
               .fallbackToDestructiveMigration(true)
               .addCallback(addDefaultValues)
               .build();
+          Log.i(MainActivity.TAG, "getDatabase synchronized"); // TODO: Remove this. This is for testing purposes.
         }
       }
     }
+    Log.i(MainActivity.TAG, "getDatabase returning instance");
     return INSTANCE;
   }
 

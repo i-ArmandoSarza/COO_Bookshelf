@@ -4,9 +4,10 @@ import androidx.room.ColumnInfo;
 import com.example.coo_bookshelf.database.BookshelfDatabase;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import com.example.coo_bookshelf.database.DbConfig;
 import java.util.Objects;
 
-@Entity(tableName = BookshelfDatabase.USER_TABLE)
+@Entity(tableName = DbConfig.USER_TABLE)
 public class User {
   @PrimaryKey(autoGenerate = true)
   @ColumnInfo(name = "UserID")

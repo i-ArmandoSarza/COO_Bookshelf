@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf.database;
+package com.example.coo_bookshelf.database.DAO;
 
 import androidx.room.Dao;
 

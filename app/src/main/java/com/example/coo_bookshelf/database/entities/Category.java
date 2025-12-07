@@ -5,9 +5,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.coo_bookshelf.database.BookshelfDatabase;
+import com.example.coo_bookshelf.database.DbConfig;
 import java.util.Objects;
 
-@Entity(tableName = BookshelfDatabase.CATEGORY_TABLE)
+@Entity(tableName = DbConfig.CATEGORY_TABLE)
 public class Category {
 
   @PrimaryKey(autoGenerate = true)
