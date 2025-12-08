@@ -66,7 +66,7 @@ public class BookshelfRepository {
     });
   }
 
-  public void deleteAll() {
+  public void deleteAllUsers() {
     BookshelfDatabase.databaseWriteExecutor.execute(userDAO::deleteAll);
   }
 
@@ -130,7 +130,7 @@ public class BookshelfRepository {
     return bookDAO.getBookById(bookId);
   }
 
-  public void deleteAll() {
+  public void deleteAllBooks() {
     BookshelfDatabase.databaseWriteExecutor.execute(bookDAO::deleteAll);
   }
 
