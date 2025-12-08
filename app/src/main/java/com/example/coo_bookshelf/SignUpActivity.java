@@ -65,21 +65,16 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                // User object
-                User user = new User(email, password);
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setAdmin(false); // New users are not admins by default
-
                 // Save user in database on a background thread
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // Insert user into database
+                        // Create the user and insert into database (this runs off the main thread)
+                        User user = new User(email, password);
                         userDAO.insert(user);
 
                         // Get new user's ID by email (implemented in UserDAO)
-                        int newUserId = userDAO.getUserByUserEmailSync(email);
+                        int newUserId = userDAO.getUserIdByUserEmailSync(email);
 
                         // Switch back to main thread to show Toast and navigate
                         runOnUiThread(new Runnable() {
