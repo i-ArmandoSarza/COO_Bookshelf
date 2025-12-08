@@ -6,6 +6,9 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.coo_bookshelf.database.BookshelfDatabase;
+import com.example.coo_bookshelf.database.DbConfig;
 import com.example.coo_bookshelf.database.entities.Book;
 import java.util.List;
 
@@ -13,7 +16,7 @@ import java.util.List;
 public interface BookDAO {
 
   @Insert
-  void insert(Book books);
+  void insert(Book book);
 
   @Update
   void update(Book... books);
@@ -21,13 +24,12 @@ public interface BookDAO {
   @Delete
   void delete(Book... books);
 
-  @Query("SELECT * FROM Book where userId = :userId")
+  @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE UserId = :userId")
   LiveData<Book> getBooksByUserId(int userId);
 
-  @Query("SELECT * FROM Book WHERE BookId = :bookId")
+  @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE BookId = :bookId")
   LiveData<Book> getBookById(int bookId);
 
-  @Query("delete from book")
+  @Query("DELETE FROM " + DbConfig.BOOK_TABLE)
   void deleteAll();
-
 }

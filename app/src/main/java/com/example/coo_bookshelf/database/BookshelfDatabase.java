@@ -87,7 +87,7 @@ public abstract class BookshelfDatabase extends RoomDatabase {
 
         Log.i(MainActivity.TAG, "onDestructiveMigration: Creating Monty's Book record.");
         // add monty's book info
-        var montyUserId = userDAO.getUserByUserEmailSync("monty@csumb.edu");
+        var montyUserId = userDAO.getUserIdByUserEmailSync("monty@csumb.edu");
         Book montyBook = new Book(montyUserId, "Red Rising",
             "Pierce Brown", "OL7621609A", "OL17076473W");
         montyBook.setFirstPublishedYear("October 14, 2025");
@@ -102,7 +102,7 @@ public abstract class BookshelfDatabase extends RoomDatabase {
 
         Log.i(MainActivity.TAG, "onDestructiveMigration: Creating Katrina's Book record.");
         // Creating seed record for Katrina's book.
-        var katUserId = userDAO.getUserByUserEmailSync("kat@csumb.edu");
+        var katUserId = userDAO.getUserIdByUserEmailSync("kat@csumb.edu");
         Book katBook = new Book(montyUserId, "The Kite Runner",
             "Khaled Hossein", "OL1412764A", "OL15902631W");
         katBook.setFirstPublishedYear("2004");
@@ -111,7 +111,7 @@ public abstract class BookshelfDatabase extends RoomDatabase {
     }
   };
 
-  static BookshelfDatabase getDatabase(final Context context) {
+  public static BookshelfDatabase getDatabase(final Context context) {
     Log.i(MainActivity.TAG, "getDatabase");
     if (INSTANCE == null) {
       synchronized (BookshelfDatabase.class) {
