@@ -6,6 +6,8 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.coo_bookshelf.database.DbConfig;
 import com.example.coo_bookshelf.database.entities.User;
 
 
@@ -14,30 +16,33 @@ public interface UserDAO {
 
   @Insert
   void insert(User user);
-
   @Delete
   void delete(User user);
-
   @Update
   void update(User user);
 
   // Delete all users from the table.
-  @Query("delete from user")
+  @Query("DELETE FROM " + DbConfig.USER_TABLE)
   void deleteAll();
 
   // Get users by userId
-  @Query("SELECT * FROM user WHERE userId == :userId ")
+  @Query("SELECT * FROM " + DbConfig.USER_TABLE +
+          " WHERE userId = :userId")
   LiveData<User> getUserByUserId(int userId);
 
-  @Query("SELECT userId FROM user WHERE userId == :userId ")
+  // Synchronous lookup by userId
+  @Query("SELECT userId FROM " + DbConfig.USER_TABLE +
+          " WHERE userId = :userId")
   int getUserByUserIdSync(int userId);
 
-  // Get userIs by the user's email address.
-  @Query("SELECT UserID FROM User WHERE email = :email ")
-  int getUserByUserEmailSync(String email);
+  // Get userId by email (sync)
+  @Query("SELECT userId FROM " + DbConfig.USER_TABLE +
+          " WHERE email = :email")
+  int getUserIdByUserEmailSync(String email);
 
   // Get users by users email address.
-  @Query("SELECT * FROM User WHERE email = :email ")
+  @Query("SELECT * FROM " + DbConfig.USER_TABLE +
+          " WHERE email = :email")
   LiveData<User> getUserByUserEmail(String email);
 
 }
