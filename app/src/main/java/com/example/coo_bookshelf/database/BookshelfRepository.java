@@ -41,11 +41,65 @@ public class BookshelfRepository {
     return null;
   }
 
-  // TODO: Implement all user queries.
+  //==========================================
+  //      USER METHODS
+  //==========================================
+
+  public void insert(User user) {
+    BookshelfDatabase.databaseWriteExecutor.execute(() -> {
+      userDAO.insert(user);
+    });
+  }
+
+  public void delete(User user) {
+    BookshelfDatabase.databaseWriteExecutor.execute(() -> {
+      userDAO.delete(user);
+    });
+  }
+
+  public void update(User user) {
+    BookshelfDatabase.databaseWriteExecutor.execute(() -> {
+      userDAO.update(user);
+    });
+  }
+
+  public void deleteAll() {
+    BookshelfDatabase.databaseWriteExecutor.execute(userDAO::deleteAll);
+  }
+
+  public LiveData<User> getUserByUserId(int userId) {
+    return userDAO.getUserByUserId(userId);
+  }
+
   public LiveData<User> getUserByUserEmail(String username) {
     return userDAO.getUserByUserEmail(username);
   }
 
-  // book operations
+  //==========================================
+  //      TODO: NEW SYNC METHODS
+  //==========================================
+  public int getUserByUserIdSync(int userId) {
+    try {
+      return BookshelfDatabase.databaseWriteExecutor
+              .submit(() -> userDAO.getUserByUserIdSync(userId))
+              .get();   // wait for result
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;         // -1 for "not found/error"
+    }
+  }
+  public int getUserIdByUserEmailSync(String email) {
+    try {
+      return BookshelfDatabase.databaseWriteExecutor
+              .submit(() -> userDAO.getUserIdByUserEmailSync(email))
+              .get();
+    } catch (Exception e) {
+      e.printStackTrace();
+      return -1;
+    }
+  }
+  //==========================================
+  //      TODO: BOOK METHODS
+  //==========================================
 
 }
