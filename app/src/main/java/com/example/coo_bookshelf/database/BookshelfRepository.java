@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import com.example.coo_bookshelf.MainActivity;
+import com.example.coo_bookshelf.database.DAO.UserDAO;
 import com.example.coo_bookshelf.database.entities.User;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

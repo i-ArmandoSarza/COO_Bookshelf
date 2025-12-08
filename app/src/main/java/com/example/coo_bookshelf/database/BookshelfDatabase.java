@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.coo_bookshelf.MainActivity;
 import com.example.coo_bookshelf.database.DAO.BookDAO;
+import com.example.coo_bookshelf.database.DAO.UserDAO;
 import com.example.coo_bookshelf.database.entities.Book;
 import com.example.coo_bookshelf.database.entities.BookCategory;
 import com.example.coo_bookshelf.database.entities.Category;
@@ -18,7 +19,7 @@ import java.util.concurrent.Executors;
 
 
 @Database(entities = {User.class, Book.class, Category.class,
-    BookCategory.class}, version = 8, exportSchema = false)
+    BookCategory.class}, version = 1, exportSchema = false)
 public abstract class BookshelfDatabase extends RoomDatabase {
 
   private static final int NUMBER_OF_THREADS = 4;
