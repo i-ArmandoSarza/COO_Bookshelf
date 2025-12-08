@@ -45,4 +45,9 @@ public interface UserDAO {
           " WHERE email = :email")
   LiveData<User> getUserByUserEmail(String email);
 
+  // Get single user by email and password (sync, for log in verification)
+  @Query("SELECT * FROM " + DbConfig.USER_TABLE +
+          " WHERE email = :email AND password = :password LIMIT 1")
+  User getUserByEmailAndPasswordSync(String email, String password);
+
 }

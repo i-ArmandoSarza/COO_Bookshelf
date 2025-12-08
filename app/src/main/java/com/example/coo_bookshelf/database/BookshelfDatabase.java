@@ -111,7 +111,7 @@ public abstract class BookshelfDatabase extends RoomDatabase {
     }
   };
 
-  static BookshelfDatabase getDatabase(final Context context) {
+  public static BookshelfDatabase getDatabase(final Context context) {
     Log.i(MainActivity.TAG, "getDatabase");
     if (INSTANCE == null) {
       synchronized (BookshelfDatabase.class) {

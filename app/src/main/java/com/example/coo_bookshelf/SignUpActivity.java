@@ -8,12 +8,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.coo_bookshelf.database.BookshelfDatabase;
+import com.example.coo_bookshelf.database.DAO.UserDAO;
+import com.example.coo_bookshelf.database.entities.User;
 import com.example.coo_bookshelf.databinding.ActivitySignUpBinding;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SignUpActivity extends AppCompatActivity {
 
     // Helper object connects to views in activity_sign_up.xml
     private ActivitySignUpBinding binding;
+
+    // DATABASE INFO
+    private UserDAO userDAO;
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,9 @@ public class SignUpActivity extends AppCompatActivity {
         // Show screen on the device
         setContentView(binding.getRoot());
 
+        userDAO = BookshelfDatabase.getDatabase(this).userDAO();
+        // Android does not allow database operations on the main thread.
+        // We use an Executor to run database operations on a background thread.
         binding.signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +65,31 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                // TODO: Add method to save new user in database.
+                // Save user in database on a background thread
+                executor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Create the user and insert into database (this runs off the main thread)
+                        User user = new User(email, password);
+                        userDAO.insert(user);
 
-                // Make a default user for testing purposes.
-                // TODO: Replace this with actual user creation logic.
-                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), 0);
-                startActivity(intent);
-                finish();
+                        // Get new user's ID by email (implemented in UserDAO)
+                        int newUserId = userDAO.getUserIdByUserEmailSync(email);
+
+                        // Switch back to main thread to show Toast and navigate
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Go to MainActivity with this user id
+                                Intent intent = MainActivity.mainActivityIntentFactory(
+                                        SignUpActivity.this, newUserId
+                                );
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+                    }
+                });
             }
         });
 

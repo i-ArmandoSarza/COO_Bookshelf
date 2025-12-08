@@ -31,14 +31,9 @@ public class LoginPageActivity extends AppCompatActivity {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Make a plan to go to MainActivity after login.
-                Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(),
-                        0);
-
-                // TODO: Update VerifyUser to get the actually users.
-                // Currently this only verifies a hardcoded users exist.
+                // Verify user credentials here
+                // If login is valid, verifyUser() will navigate to the main activity
                 verifyUser();
-                startActivity(intent);
             }
         });
 
@@ -59,7 +54,53 @@ public class LoginPageActivity extends AppCompatActivity {
         return new Intent(context, LoginPageActivity.class);
     }
 
-    private void verifyUser(){
+    private void verifyUser() {
+        // Read user input
+        String email = binding.emailLoginEditText.getText().toString().trim();
+        String passwordInput = binding.passwordLoginEditText.getText().toString().trim();
+
+        // Check if input is empty
+        if (email.isEmpty() || passwordInput.isEmpty()) {
+            toastMaker("Please enter both email and password.");
+            return;
+        }
+
+        // Safety check incase repository failed to initialize
+        if (repository == null) {
+            toastMaker("Error connecting to database. Try again.");
+            Log.e(MainActivity.TAG, "Repository is null in LoginPageActivity.verifyUser()");
+            return;
+        }
+
+        // Retrieve user with this email from repository
+        var userLiveData = repository.getUserByUserEmail(email);
+        userLiveData.observe(this, user -> {
+            // Stop observing after first result so we don't get repeated callbacks
+            userLiveData.removeObservers(this);
+
+            if (user != null) {
+                // User found, check password
+                if (user.getPassword().equals(passwordInput)) {
+                    // Password matches, navigate to MainActivity
+                    Intent intent = MainActivity.mainActivityIntentFactory(
+                            LoginPageActivity.this,
+                            user.getUserId()
+                    );
+                    startActivity(intent);
+                    finish(); // Close LoginPageActivity
+                } else {
+                    // Password does not match
+                    toastMaker("Invalid password. Please try again.");
+                }
+            } else {
+                // No user found with this email
+                toastMaker("No account found with this email.");
+            }
+        });
+    }
+
+    // TESTER METHOD
+    /** private void verifyUser(){
       // This has not been wired up to check the loginActivity inputs.
       // This is for testing only to verify that the we can retrieve a user from the database.
       var email = "monty@csumb.edu";
@@ -82,7 +123,7 @@ public class LoginPageActivity extends AppCompatActivity {
         }
       });
 
-    }
+    } */
     private void toastMaker(String message) {
       Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
