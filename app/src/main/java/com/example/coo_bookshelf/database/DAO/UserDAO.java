@@ -50,4 +50,9 @@ public interface UserDAO {
           " WHERE email = :email AND password = :password LIMIT 1")
   User getUserByEmailAndPasswordSync(String email, String password);
 
+  @Query("UPDATE " + DbConfig.USER_TABLE +
+          " SET FirstName = :firstName, LastName = :lastName " +
+          " WHERE userId = :userId")
+  void updateUserName(int userId, String firstName, String lastName);
+
 }
