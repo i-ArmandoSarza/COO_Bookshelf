@@ -27,4 +27,7 @@
     <string name="save_button_text">Save</string>
     <string name="please_enter_your_first_and_last_name">Please enter your first and last name</string>
     <string name="let_s_complete_your_profile">Let\'s complete your profile</string>
+    <string name="log_in">Log In</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
 </resources>
