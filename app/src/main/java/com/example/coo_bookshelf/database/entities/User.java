@@ -14,6 +14,8 @@ public class User {
   private int userId;
   @ColumnInfo(name = "FirstName")
   private String firstName;
+  @ColumnInfo(name = "LastName")
+  private String lastName;
   @ColumnInfo(name = "Email")
   private String email;
   @ColumnInfo(name = "IsAdmin")
@@ -27,19 +29,18 @@ public class User {
     isAdmin = false;
   }
 
+
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
     User users = (User) o;
-    return userId == users.userId && isAdmin == users.isAdmin && Objects.equals(firstName,
-        users.firstName) && Objects.equals(password, users.password);
+    return userId == users.userId;
   }
-
   @Override
   public int hashCode() {
-    return Objects.hash(userId, firstName, isAdmin, password);
+    return Objects.hash(userId);
   }
 
   public int getUserId() {
@@ -54,14 +55,17 @@ public class User {
     return firstName;
   }
 
+  public String getLastName() { return lastName; }
+
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
+  public void setLastName(String lastName) { this.lastName = lastName;}
+
   public boolean isAdmin() {
     return isAdmin;
   }
-
   public void setAdmin(boolean admin) {
     isAdmin = admin;
   }
