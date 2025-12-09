@@ -1,5 +1,7 @@
 package com.example.coo_bookshelf;
 
+import static android.view.View.GONE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     //TODO: If doing recycle view, refactor
+    /*Not the best source but it does do it how this was previously set up.
+    https://www.tutorialspoint.com/how-can-i-remove-a-button-or-make-it-invisible-in-android
+    p.s. I think doing it this way would fix the database not populating until you make a call.
+    since it only became an issue after doing it this way.
+    */
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
     repository = BookshelfRepository.getRepository(getApplication());
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
   private void userLogin() {
     //TODO: Create login method
+    //TODO: Create a logout button
     loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
   }
 
@@ -62,10 +70,18 @@ public class MainActivity extends AppCompatActivity {
       // Stop observing after first result so we don't get repeated callbacks
       userLiveData.removeObservers(this);
 
+      //shouldn't happen but just in case
       if (user != null) {
+
+        if(!user.isAdmin()){
+          binding.IsAdminLandingPageTextView.setText("");
+          binding.AdminButton.setVisibility(GONE);
+        }
+
         String name = user.getFirstName();
         String welcomeMessage = "Welcome " + name + "!";
         binding.WelcomeTitleTextView.setText(welcomeMessage);
+
       }
     });
   }
