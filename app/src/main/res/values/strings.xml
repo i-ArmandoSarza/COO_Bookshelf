@@ -17,4 +17,9 @@
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="login_page_link">Already have an account? Log In</string>
     <string name="sign_up">Sign Up</string>
+  <string name="welcome_username"><![CDATA[Welcome <username>]]></string>
+    <string name="you_currently_have_s_books_in_your_bookshelf"><![CDATA[You currently have <>s books in your bookshelf]]></string>
+    <string name="admin_view">Admin View</string>
+    <string name="search_discover_books">Search / Discover Books</string>
+    <string name="my_books">My Books</string>
 </resources>
