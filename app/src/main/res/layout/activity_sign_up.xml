@@ -11,41 +11,14 @@
     <!-- Logo -->
     <ImageView
         android:id="@+id/LogoLoginImageView"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="90dp"
         android:contentDescription="@string/Login_Logo"
         android:src="@drawable/bookshelflogo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Title -->
-    <TextView
-        android:id="@+id/titleLogInTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="start"
-        android:text="@string/Title_Login_Page"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/LogoLoginImageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/LogoLoginImageView"
-        app:layout_constraintTop_toTopOf="@+id/LogoLoginImageView" />
-
-    <!--Title Subtext -->
-    <TextView
-        android:id="@+id/subTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/Message_Logo"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/titleLogInTextView"
-        app:layout_constraintStart_toStartOf="@+id/titleLogInTextView"
-        app:layout_constraintTop_toBottomOf="@+id/titleLogInTextView" />
 
     <!-- Create Account Title -->
     <TextView
@@ -55,24 +28,12 @@
         android:layout_marginTop="16dp"
         android:text="@string/create_account"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subTitleTextView" />
+        app:layout_constraintTop_toBottomOf="@id/LogoLoginImageView" />
 
-
-    <!-- Email label -->
-    <TextView
-        android:id="@+id/titleEmailTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/Email_Title_Box"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SignUpTitleTextView" />
 
     <!-- Email input -->
     <EditText
@@ -80,26 +41,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/Email_Text_Box"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleEmailTextView" />
+        app:layout_constraintTop_toBottomOf="@id/SignUpTitleTextView" />
 
-    <!-- Password label -->
-    <TextView
-        android:id="@+id/titlePasswordTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/Password_Title_Box"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailSignUpEditText" />
 
     <!-- Password input -->
     <EditText
@@ -107,26 +57,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/Password_Text_Box"
+        android:hint="Password"
         android:inputType="textPassword"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titlePasswordTextView" />
-
-    <!-- Password label -->
-    <TextView
-        android:id="@+id/titleConfirmPasswordTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/password_confirmation"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText" />
+        app:layout_constraintTop_toBottomOf="@id/emailSignUpEditText" />
 
     <!-- Confirm password input -->
     <EditText
@@ -134,14 +72,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:hint="@string/re_enter_password"
+        android:hint="Confirm password"
         android:inputType="textPassword"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleConfirmPasswordTextView" />
+        app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText" />
 
     <!-- Sign up button -->
     <Button
