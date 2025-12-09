@@ -41,8 +41,8 @@ public abstract class BookshelfDatabase extends RoomDatabase {
 
       db.execSQL(
           """
-                insert into User (Email, password, firstName, isAdmin)
-                values ('monty@csumb.edu', 'admin1', 'Monty Rey', 1);
+                insert into User (Email, password, firstName, lastName, isAdmin)
+                values ('monty@csumb.edu', 'admin1', 'Monty', 'Rey', 1);
               """.stripIndent()
       );
       db.execSQL(
@@ -56,8 +56,8 @@ public abstract class BookshelfDatabase extends RoomDatabase {
       Log.i(MainActivity.TAG, "Creating user Katrina and books record.");
       db.execSQL(
           """
-                insert into User (Email, password, firstName, isAdmin)
-                values ('katcsumb', 'katcsumb', 'Katrina', 0);
+                insert into User (Email, password, firstName, lastName, isAdmin)
+                values ('katcsumb', 'katcsumb', 'Katrina', 'Jones', 0);
               """.stripIndent()
       );
       db.execSQL(
@@ -82,7 +82,8 @@ public abstract class BookshelfDatabase extends RoomDatabase {
         // Creating Monty seed created.
         User userMonty = new User("monty@csumb.edu", "admin1");
         userMonty.setAdmin(true);
-        userMonty.setFirstName("Monty Rey");
+        userMonty.setFirstName("Monty");
+        userMonty.setLastName("Rey");
         userDAO.insert(userMonty);
 
         Log.i(MainActivity.TAG, "onDestructiveMigration: Creating Monty's Book record.");
@@ -97,13 +98,14 @@ public abstract class BookshelfDatabase extends RoomDatabase {
         // Create seed record for Katrina non admin user
         User kat = new User("kat@csumb.edu", "password1");
         kat.setFirstName("Katrina");
+        kat.setLastName("Jones");
         kat.setAdmin(false);
         userDAO.insert(kat);
 
         Log.i(MainActivity.TAG, "onDestructiveMigration: Creating Katrina's Book record.");
         // Creating seed record for Katrina's book.
         var katUserId = userDAO.getUserIdByUserEmailSync("kat@csumb.edu");
-        Book katBook = new Book(montyUserId, "The Kite Runner",
+        Book katBook = new Book(katUserId, "The Kite Runner",
             "Khaled Hossein", "OL1412764A", "OL15902631W");
         katBook.setFirstPublishedYear("2004");
         bookDAO.insert(katBook);
