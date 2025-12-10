@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
 
 
 @Database(entities = {User.class, Book.class, Category.class,
-    BookCategory.class}, version = 1, exportSchema = false)
+    BookCategory.class}, version = 2, exportSchema = false)
 public abstract class BookshelfDatabase extends RoomDatabase {
 
   private static final int NUMBER_OF_THREADS = 4;
@@ -57,7 +57,7 @@ public abstract class BookshelfDatabase extends RoomDatabase {
       db.execSQL(
           """
                 insert into User (Email, password, firstName, lastName, isAdmin)
-                values ('katcsumb', 'katcsumb', 'Katrina', 'Jones', 0);
+                values ('kat@csumb.edu', 'password1', 'Katrina', 'Jones', 0);
               """.stripIndent()
       );
       db.execSQL(
