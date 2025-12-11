@@ -17,17 +17,25 @@ public class MyBookDetailFragment  extends Fragment {
   private static final String BOOK_TITLE = "book_title";
   private static final String BOOK_IMAGE_URL = "book_image_url";
   private static final String BOOK_AUTHOR = "book_author";
+  private static final String BOOK_ISBN = "book_isbn";
+  private static final String BOOK_PUBLISH_DATE = "book_publish_date";
+  private static final String BOOK_DESCRIPTION = "book_description";
 
   public MyBookDetailFragment() {
     // Required empty constructor
   }
 
-  public static MyBookDetailFragment newInstance(String title, String imageUrl, String description) {
+  public static MyBookDetailFragment newInstance(String title, String imageUrl, String author
+  , String isbn, String publishDate, String description) {
     MyBookDetailFragment fragment = new MyBookDetailFragment();
     Bundle args = new Bundle();
+
     args.putString(BOOK_TITLE, title);
     args.putString(BOOK_IMAGE_URL, imageUrl);
-    args.putString(BOOK_AUTHOR, description);
+    args.putString(BOOK_AUTHOR, author);
+    args.putString(BOOK_ISBN, isbn);
+    args.putString(BOOK_PUBLISH_DATE, publishDate);
+    args.putString(BOOK_DESCRIPTION, description);
     fragment.setArguments(args);
     return fragment;
   }
@@ -49,6 +57,11 @@ public class MyBookDetailFragment  extends Fragment {
     ImageView detailImage = view.findViewById(R.id.detailImage);
     TextView detailTitle = view.findViewById(R.id.detailTitle);
     TextView detailAuthor = view.findViewById(R.id.detailAuthor);
+    TextView detailPublishDate = view.findViewById(R.id.bookPublishDate);
+    TextView detailDescription = view.findViewById(R.id.bookDescription);
+    TextView detailIsbn = view.findViewById(R.id.bookIsbn);
+
+
 
     backButton.setOnClickListener(v -> {
       requireActivity().getSupportFragmentManager().popBackStack();
@@ -57,10 +70,17 @@ public class MyBookDetailFragment  extends Fragment {
     if (getArguments() != null) {
       String title = getArguments().getString(BOOK_TITLE);
       String imageUrl = getArguments().getString(BOOK_IMAGE_URL);
-      String description = getArguments().getString(BOOK_AUTHOR);
+      String author = getArguments().getString(BOOK_AUTHOR);
+      String description = getArguments().getString(BOOK_DESCRIPTION);
+      String isbn = getArguments().getString(BOOK_ISBN);
+      String publishDate = getArguments().getString(BOOK_PUBLISH_DATE);
 
       detailTitle.setText(title);
-      detailAuthor.setText(description);
+      detailAuthor.setText(author);
+      detailPublishDate.setText(publishDate);
+      detailDescription.setText(description);
+      detailIsbn.setText(isbn);
+
 
       Glide.with(requireContext())
           .load(imageUrl)
