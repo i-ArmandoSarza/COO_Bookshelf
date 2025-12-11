@@ -30,4 +30,6 @@
     <string name="log_in">Log In</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+  <string name="book_cover">Book cover</string>
+  <string name="back">Back</string>
 </resources>
