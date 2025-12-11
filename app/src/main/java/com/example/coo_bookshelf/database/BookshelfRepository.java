@@ -78,6 +78,12 @@ public class BookshelfRepository {
     return userDAO.getUserByUserEmail(username);
   }
 
+  public void updateUserName(int userId, String firstName, String lastName) {
+    BookshelfDatabase.databaseWriteExecutor.execute(() -> {
+      userDAO.updateUserName(userId, firstName, lastName);
+    });
+  }
+
   //==========================================
   //      SYNC METHODS
   //==========================================
