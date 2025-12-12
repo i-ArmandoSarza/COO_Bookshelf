@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="By:"
+        android:text="@string/labelFor_detailAuthor_by"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
 
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="Published:"
+        android:text="@string/published"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
       <TextView
@@ -84,7 +84,7 @@
         android:id="@+id/labelFor_bookIsbn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ISBN:"
+        android:text="@string/isbn"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
       <TextView
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginTop="8dp"
-        android:text="Description:"
+        android:text="@string/description"
         android:textColor="@android:color/black"
         android:textSize="16sp" />
       <TextView
