@@ -16,6 +16,7 @@
       android:text="@string/back" />
 
     <ImageView
+      android:contentDescription="@string/book_cover"
       android:id="@+id/detailImage"
       android:layout_width="match_parent"
       android:layout_height="400dp"
