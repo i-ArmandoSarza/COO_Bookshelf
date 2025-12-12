@@ -36,4 +36,5 @@
   <string name="published">Published:</string>
   <string name="isbn">ISBN:</string>
   <string name="description">Description:</string>
+    <string name="back_arrow_text">←</string>
 </resources>
