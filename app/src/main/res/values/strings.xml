@@ -30,11 +30,16 @@
     <string name="log_in">Log In</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-  <string name="book_cover">Book cover</string>
-  <string name="back">Back</string>
-  <string name="labelFor_detailAuthor_by">By:</string>
-  <string name="published">Published:</string>
-  <string name="isbn">ISBN:</string>
-  <string name="description">Description:</string>
+    <string name="book_cover">Book cover</string>
+    <string name="back">Back</string>
+    <string name="labelFor_detailAuthor_by">By:</string>
+    <string name="published">Published:</string>
+    <string name="isbn">ISBN:</string>
+    <string name="description">Description:</string>
     <string name="back_arrow_text">←</string>
+    <string name="app_title_text">Capital City Otters Bookshelf</string>
+    <string name="version_text">Version 1.0</string>
+    <string name="app_purpose_text">This app was created as part of a 2-week school project. It allows users to manage a personal library by adding, viewing, and searching books.</string>
+    <string name="created_by_text">Created by:</string>
+    <string name="group_names_text">• Rose Arias-Aceves\n• Kristine Barruzo\n• Steve Mendoza\n• Armando Sarza</string>
 </resources>
