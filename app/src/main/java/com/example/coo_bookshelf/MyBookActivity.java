@@ -30,9 +30,11 @@ public class MyBookActivity  extends AppCompatActivity {
       return;
     }
 
+    MyBookListFragment myBookListFragment = new MyBookListFragment(1);
+
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
-          .replace(R.id.myBookFragmentContainerView, new MyBookListFragment())
+          .replace(R.id.myBookFragmentContainerView, new MyBookListFragment(userId))
           .commit();
     }
   }

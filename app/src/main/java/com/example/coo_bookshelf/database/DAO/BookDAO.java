@@ -10,6 +10,7 @@ import androidx.room.Update;
 import com.example.coo_bookshelf.database.BookshelfDatabase;
 import com.example.coo_bookshelf.database.DbConfig;
 import com.example.coo_bookshelf.database.entities.Book;
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -25,7 +26,7 @@ public interface BookDAO {
   void delete(Book... books);
 
   @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE UserId = :userId")
-  LiveData<Book> getBooksByUserId(int userId);
+  LiveData<List<Book>> getBooksByUserId(int userId);
 
   @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE BookId = :bookId")
   LiveData<Book> getBookById(int bookId);

@@ -7,13 +7,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.coo_bookshelf.database.BookshelfRepository;
+import com.example.coo_bookshelf.database.entities.Book;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MyBookListFragment extends Fragment {
 
-  public MyBookListFragment() {
+  private BookshelfRepository repository;
+  private int USERID;
+  private MyBookAdapter adapter;
+
+  public MyBookListFragment(int userId) {
     super(R.layout.my_book_list_fragment);
+    this.USERID = userId;
   }
 
   @Override
@@ -23,58 +31,22 @@ public class MyBookListFragment extends Fragment {
     RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    // TODO: Get data from DB. This is a test for the proof of concept.
-    // mock data.
-    List<MyBookItem> data = Arrays.asList(
-        new MyBookItem(
-            "Red Rising",
-            "https://covers.openlibrary.org/b/isbn/9780593871522-L.jpg",
-            "Pierce Brown.",
-            "9780593871522",
-            "2012",
-            "Book Description"
+    repository = BookshelfRepository.getRepository(requireActivity().getApplication());
 
-        ),
-        new MyBookItem(
-            "The Kite Runner",
-            "https://covers.openlibrary.org/b/isbn/1417640391-L.jpg",
-            "Khaled Hosseini",
-            "9867475658",
-            "2013",
-            "The unforgettable, heartbreaking story of the unlikely friendship between a "
-                + "wealthy boy and the son of his father’s servant, The Kite Runner is a beautifully "
-                + "crafted novel set in a country that is in the process of being destroyed. It is "
-                + "about the power of reading, the price of betrayal, and the possibility of "
-                + "redemption; and an exploration of the power of fathers over sons—their love, "
-                + "their sacrifices, their lies.A sweeping story of family, love, "
-                + "and friendship told against the devastating backdrop of the history of Afghanistan"
-                + " over the last thirty years, The Kite Runner is an unusual and powerful novel that has become a beloved, one-of-a-kind classic."
+    // Start with an empty list
+    ArrayList<MyBookItem> myBookItems = new ArrayList<>();
 
-        ),
-        new MyBookItem(
-            "Artemis",
-            "https://covers.openlibrary.org/b/id/12639918-L.jpg",
-            "Andy Weir",
-            "9867475658",
-            "2017",
-            "Book Description"
-        )
-    );
-
-
-    MyBookAdapter adapter = new MyBookAdapter(data, myBookItem -> {
-      // Navigate to detail fragment on click
+    // Create adapter with empty list
+    adapter = new MyBookAdapter(myBookItems, selectedItem -> {
       MyBookDetailFragment detailFragment = MyBookDetailFragment.newInstance(
-          myBookItem.getTitle(),
-          myBookItem.getImageUrl(),
-          myBookItem.getAuthor(),
-          myBookItem.getIsbn(),
-          myBookItem.getPublishDate(),
-          myBookItem.getDescription()
+          selectedItem.getTitle(),
+          selectedItem.getImageUrl(),
+          selectedItem.getAuthor(),
+          selectedItem.getIsbn(),
+          selectedItem.getPublishDate(),
+          selectedItem.getDescription()
       );
 
-      // Replace the current fragment with the detail fragment
-      // Display the details from the selected book tile.
       requireActivity().getSupportFragmentManager().beginTransaction()
           .replace(R.id.myBookFragmentContainerView, detailFragment)
           .addToBackStack(null)
@@ -82,5 +54,27 @@ public class MyBookListFragment extends Fragment {
     });
 
     recyclerView.setAdapter(adapter);
+
+    // Observe LiveData
+    repository.getBooksByUserId(USERID).observe(getViewLifecycleOwner(), books -> {
+
+      myBookItems.clear(); // Clear old data
+
+      if (books != null) {
+        for (Book b : books) {
+          myBookItems.add(new MyBookItem(
+              b.getTitle(),
+              b.getImageUrl(),
+              b.getAuthor(),
+              b.getIsbn(),
+              b.getFirstPublishedYear(),
+              b.getDescription()
+          ));
+        }
+      }
+
+      // Notify the adapter that data changed
+      adapter.notifyDataSetChanged();
+    });
   }
 }
