@@ -23,6 +23,12 @@ public class Book {
   private String authorKey;
   @ColumnInfo(name = "FirstPublishedYear")
   private String firstPublishedYear;
+  @ColumnInfo(name = "Description")
+  private String description;
+  @ColumnInfo(name = "ImageUrl")
+  private String imageUrl;
+  @ColumnInfo(name = "Isbn")
+  private String isbn;
   // The OL workId
   // Cover ID is located in https://openlibrary.org/works/OL2089932W
   @ColumnInfo(name = "WorksId")
@@ -37,6 +43,30 @@ public class Book {
     this.worksId = worksId;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
+  public String getIsbn() {
+    return isbn;
+  }
+
+  public void setIsbn(String isbn) {
+    this.isbn = isbn;
+  }
+
   public String getFirstPublishedYear() {
     return firstPublishedYear;
   }
@@ -45,22 +75,24 @@ public class Book {
     this.firstPublishedYear = firstPublishedYear;
   }
 
-  // TODO: Check if the equals is using the correct fields we want to match on.
   @Override
   public boolean equals(Object o) {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
     Book book = (Book) o;
-    return bookId == book.bookId && userId == book.userId && Objects.equals(title,
-        book.title) && Objects.equals(author, book.author) && Objects.equals(
-        authorKey, book.authorKey) && Objects.equals(firstPublishedYear,
-        book.firstPublishedYear) && Objects.equals(worksId, book.worksId);
+    return userId == book.userId && Objects.equals(title, book.title)
+        && Objects.equals(author, book.author) && Objects.equals(authorKey,
+        book.authorKey) && Objects.equals(firstPublishedYear, book.firstPublishedYear)
+        && Objects.equals(description, book.description) && Objects.equals(
+        imageUrl, book.imageUrl) && Objects.equals(isbn, book.isbn)
+        && Objects.equals(worksId, book.worksId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bookId, userId, title, author, authorKey, firstPublishedYear, worksId);
+    return Objects.hash(userId, title, author, authorKey, firstPublishedYear, description, imageUrl,
+        isbn, worksId);
   }
 
   public int getBookId() {
