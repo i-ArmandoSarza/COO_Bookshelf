@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnContextClickListener;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
       startActivity(intent);
     }
     welcomeScreen();
+
+    binding.MyBooksButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = MyBookActivity.MyBookActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        startActivity(intent);
+      }
+    });
   }
 
   private void userLogin() {
