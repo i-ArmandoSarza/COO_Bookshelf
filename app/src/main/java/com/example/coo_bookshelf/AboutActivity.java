@@ -10,7 +10,7 @@ import com.example.coo_bookshelf.databinding.ActivityAboutBinding;
 
 public class AboutActivity extends AppCompatActivity {
 
-    ActivityAboutBinding binding;
+    private ActivityAboutBinding binding;
 
     public static Intent aboutIntentFactory(Context context) {
         return new Intent(context, AboutActivity.class);
@@ -19,6 +19,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityAboutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         // Setup Toolbar: back button

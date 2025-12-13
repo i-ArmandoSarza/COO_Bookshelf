@@ -42,4 +42,8 @@
     <string name="app_purpose_text">This app was created as part of a 2-week school project. It allows users to manage a personal library by adding, viewing, and searching books.</string>
     <string name="created_by_text">Created by:</string>
     <string name="group_names_text">• Rose Arias-Aceves\n• Kristine Barruzo\n• Steve Mendoza\n• Armando Sarza</string>
+    <string name="about_text">About</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="admin_settings_text">Admin Settings</string>
+    <string name="add_books_text">Add a Book</string>
 </resources>
