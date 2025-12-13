@@ -61,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
+    // Create an intent to start  MyBookActivity if the MyBooksButton is clicked.
+    binding.SearchBooksButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = MyBookSearchActivity.MyBookSearchActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        startActivity(intent);
+      }
+    });
   }
 
   private void userLogin() {
