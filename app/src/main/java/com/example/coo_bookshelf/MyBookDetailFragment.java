@@ -53,7 +53,7 @@ public class MyBookDetailFragment  extends Fragment {
       @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    Button backButton = view.findViewById(R.id.backButton);
+    TextView backButton = view.findViewById(R.id.backButton);
     ImageView detailImage = view.findViewById(R.id.detailImage);
     TextView detailTitle = view.findViewById(R.id.detailTitle);
     TextView detailAuthor = view.findViewById(R.id.detailAuthor);

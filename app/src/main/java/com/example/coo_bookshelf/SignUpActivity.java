@@ -34,6 +34,15 @@ public class SignUpActivity extends AppCompatActivity {
         // Show screen on the device
         setContentView(binding.getRoot());
 
+        // Setup Toolbar: back button
+        setSupportActionBar(binding.toolbar);
+
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);    // hide title text
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);      // show back arrow
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         userDAO = BookshelfDatabase.getDatabase(this).userDAO();
         // Android does not allow database operations on the main thread.
         // We use an Executor to run database operations on a background thread.
@@ -107,5 +116,12 @@ public class SignUpActivity extends AppCompatActivity {
     /** Helper method to open SignUpActivity from other activities */
     static Intent signUpIntentFactory(Context context) {
         return new Intent(context, SignUpActivity.class);
+    }
+
+    // ToolBar back arrow click
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();   // go back to previous Activity
+        return true;
     }
 }
