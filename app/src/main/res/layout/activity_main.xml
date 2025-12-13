@@ -8,31 +8,44 @@
     android:background="@drawable/backgroundlogin"
     tools:context=".MainActivity">
 
-    <!-- Top App Bar (ToolBar + Menu) -->
+    <!-- Top App Bar (ToolBar Menu) -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="35dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ───────────────────────────────
-         LOGO + WELCOME TEXT
-         ─────────────────────────────── -->
+    <!-- "Admin View" label (only visible for admins) -->
+    <TextView
+        android:id="@+id/IsAdminLandingPageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="@string/admin_view"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"/>
 
     <!-- App Logo -->
     <ImageView
         android:id="@+id/LogoLandingImageView"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="24dp"
         android:contentDescription="@string/Login_Logo"
         android:src="@drawable/bookshelflogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/IsAdminLandingPageTextView"
+        app:layout_goneMarginTop="32dp"/>
 
     <!-- "Welcome, <username>" title -->
     <TextView
@@ -60,24 +73,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/WelcomeTitleTextView" />
 
-    <!-- "Admin View" label (only visible for admins) -->
-    <TextView
-        android:id="@+id/IsAdminLandingPageTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="@string/admin_view"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <!-- ───────────────────────────────
          MAIN ACTION BUTTONS
          ─────────────────────────────── -->
 
-    <!-- "My Books" button -->
+    <!-- My Books button -->
     <Button
         android:id="@+id/MyBooksButton"
         android:layout_width="0dp"
@@ -137,9 +137,9 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
-        android:textColor="#333333"
         android:background="#618CFC"
         android:text="@string/admin_settings_text"
+        android:textColor="#333333"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
