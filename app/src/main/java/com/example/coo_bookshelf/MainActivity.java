@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
   private void userLogin() {
     //TODO: Create login method
-    //TODO: Create a logout button
     loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
   }
 
