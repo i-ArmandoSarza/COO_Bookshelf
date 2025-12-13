@@ -3,9 +3,25 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
+  <!-- Back arrow at top, similar to About page -->
+  <TextView
+      android:id="@+id/backButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginBottom="16dp"
+      android:layout_marginStart="16dp"
+      android:background="@android:color/transparent"
+      android:padding="8dp"
+      android:text="@string/back_arrow_text"
+      android:textSize="30sp" />
+
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="match_parent"
+    android:layout_marginTop="70dp"
+    android:layout_marginStart="16dp"/>
+
 
 </FrameLayout>
