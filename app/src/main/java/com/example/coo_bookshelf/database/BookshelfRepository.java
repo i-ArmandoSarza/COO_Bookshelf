@@ -8,6 +8,7 @@ import com.example.coo_bookshelf.database.DAO.BookDAO;
 import com.example.coo_bookshelf.database.DAO.UserDAO;
 import com.example.coo_bookshelf.database.entities.Book;
 import com.example.coo_bookshelf.database.entities.User;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -128,7 +129,9 @@ public class BookshelfRepository {
     });
   }
 
-  public LiveData<Book> getBooksByUserId(int userId) {
+  // https://developer.android.com/topic/libraries/architecture/livedata
+  // The docs say we should use live data in the repo.
+  public LiveData<List<Book>> getBooksByUserId(int userId) {
     return bookDAO.getBooksByUserId(userId);
   }
 
