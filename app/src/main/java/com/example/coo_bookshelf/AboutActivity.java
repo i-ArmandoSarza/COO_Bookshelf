@@ -3,6 +3,7 @@ package com.example.coo_bookshelf;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +33,7 @@ public class AboutActivity extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
