@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 public class MyBookItem {
 

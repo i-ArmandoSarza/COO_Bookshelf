@@ -13,7 +13,7 @@
     android:theme="@style/Theme.COO_Bookshelf">
     <activity
       android:exported="false"
-      android:name=".MyBookSearchActivity" />
+      android:name=".bookseach.MyBookSearchActivity" />
     <activity
       android:exported="false"
       android:name=".AdditionalUserInfoActivity" />
@@ -32,7 +32,7 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".MyBookActivity" />
+    <activity android:name=".mybooks.MyBookActivity" />
   </application>
   <!-- permissions for INTERNET -->
   <uses-permission android:name="android.permission.INTERNET" />

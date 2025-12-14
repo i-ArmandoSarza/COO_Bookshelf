@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.bookseach;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.databinding.ActivityMyBookSearchBinding;
+import com.example.coo_bookshelf.mybooks.MyBookItem;
 import com.example.coo_bookshelf.services.OpenLibraryService;
 import com.example.coo_bookshelf.services.model.SearchApiResponse;
 import java.util.ArrayList;
@@ -155,6 +157,12 @@ public class MyBookSearchActivity extends AppCompatActivity {
           ArrayList<MyBookItem> myBookItems = new ArrayList<>();
 
           for (int i = 0; i < searchApiResponse.getDocs().size(); i++) {
+            if(searchApiResponse.getDocs().get(i).getAuthorKey() == null) {
+              // we don't want records with null author keys. Usually leads to most of the record
+              // null.
+              continue;
+            }
+
             // Setup cover image url. We are using the ID from the cover_i field.
             String coverUrl = String.format(Locale.ENGLISH,
                 "%s/%d-M.jpg",
@@ -162,6 +170,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
                 searchApiResponse.getDocs().get(i).getCoverI());
 
             // Create a MyBookItem object to load into the myBookItems List.
+            // Should be better null checking.
             var book = new MyBookItem(
                 searchApiResponse.getDocs().get(i).getTitle(),
                 coverUrl,
@@ -226,7 +235,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
   }
 
   // setup intent for MyBookActivity
-  static Intent MyBookSearchActivityIntentFactory(Context context, int userId) {
+  public static Intent MyBookSearchActivityIntentFactory(Context context, int userId) {
     Intent intent = new Intent(context, MyBookSearchActivity.class);
     intent.putExtra("USER_ID", userId);
     return intent;

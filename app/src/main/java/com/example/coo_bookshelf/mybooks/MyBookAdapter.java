@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
+import com.example.coo_bookshelf.R;
 import java.util.List;
 
 public class MyBookAdapter extends RecyclerView.Adapter<MyBookAdapter.ViewHolder> {
