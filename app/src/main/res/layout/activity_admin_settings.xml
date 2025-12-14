@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/backgroundlogin"
-  tools:context=".admin_settings">
+  tools:context=".AdminSettings">
 
   <Button
     android:id="@+id/AddUserButton"
@@ -23,7 +23,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/AndroidLogoImageView" />
 
-  <!-- Yes I drew this by hand lol ~Rose) -->
   <Button
     android:id="@+id/RemoveUserButton"
     android:layout_width="0dp"
@@ -33,13 +32,13 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="#6F8FAF"
-    android:text="Remove Users"
+    android:text="@string/remove_users"
     android:textSize="20sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/AddUserButton" />
   />
-
+  <!-- Yes I drew this by hand lol ~Rose) -->
   <ImageView
     android:id="@+id/AndroidLogoImageView"
     android:layout_width="96dp"

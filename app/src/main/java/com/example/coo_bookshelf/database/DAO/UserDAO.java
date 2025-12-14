@@ -8,7 +8,9 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.coo_bookshelf.database.DbConfig;
+import com.example.coo_bookshelf.database.entities.Book;
 import com.example.coo_bookshelf.database.entities.User;
+import java.util.List;
 
 
 @Dao
@@ -35,6 +37,9 @@ public interface UserDAO {
           " WHERE userId = :userId")
   int getUserByUserIdSync(int userId);
 
+  @Query("SELECT * FROM " + DbConfig.USER_TABLE)
+  LiveData<List<User>> getAllUsersLiveData();
+
   // Get userId by email (sync)
   @Query("SELECT userId FROM " + DbConfig.USER_TABLE +
           " WHERE email = :email")
@@ -54,5 +59,6 @@ public interface UserDAO {
           " SET FirstName = :firstName, LastName = :lastName " +
           " WHERE userId = :userId")
   void updateUserName(int userId, String firstName, String lastName);
+
 
 }

@@ -13,7 +13,10 @@
     android:theme="@style/Theme.COO_Bookshelf">
     <activity
       android:exported="false"
-      android:name=".admin_settings" />
+      android:name=".AdminSettings" />
+    <activity
+      android:exported="false"
+      android:name=".AdminRemoveUser" />
     <activity
       android:exported="false"
       android:name=".AdditionalUserInfoActivity" />

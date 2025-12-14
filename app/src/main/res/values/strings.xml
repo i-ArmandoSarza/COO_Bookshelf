@@ -37,4 +37,5 @@
   <string name="isbn">ISBN:</string>
   <string name="description">Description:</string>
   <string name="admin_logo">admin_logo</string>
+  <string name="remove_users">Remove Users</string>
 </resources>

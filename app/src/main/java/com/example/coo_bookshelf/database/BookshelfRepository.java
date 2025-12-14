@@ -75,6 +75,11 @@ public class BookshelfRepository {
     return userDAO.getUserByUserId(userId);
   }
 
+  //setting up recycler view for user data
+  public LiveData<List<User>> getAllUsersLiveData() {
+    return userDAO.getAllUsersLiveData();
+  }
+
   public LiveData<User> getUserByUserEmail(String username) {
     return userDAO.getUserByUserEmail(username);
   }
