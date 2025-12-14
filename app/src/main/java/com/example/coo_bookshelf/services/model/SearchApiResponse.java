@@ -1,8 +1,7 @@
-package com.example.coo_bookshelf.services;
+package com.example.coo_bookshelf.services.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
 import java.util.List;
 
 // Use https://www.jsonschema2pojo.org/ help create JSON response POJO.

@@ -8,7 +8,7 @@ public class MyBookItem {
   private String isbn;
   private String publishDate;
   private String description;
-
+  private String worksId;
   public MyBookItem(String title, String imageUrl, String author, String isbn,
       String publishDate, String description) {
     this.title = title;
@@ -17,6 +17,14 @@ public class MyBookItem {
     this.isbn = isbn;
     this.publishDate = publishDate;
     this.description = description;
+  }
+
+  public String getWorksId() {
+    return worksId;
+  }
+
+  public void setWorksId(String worksId) {
+    this.worksId = worksId;
   }
 
   public String getIsbn() {
@@ -55,7 +63,15 @@ public class MyBookItem {
     return imageUrl;
   }
 
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
   public String getAuthor() {
     return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
   }
 }

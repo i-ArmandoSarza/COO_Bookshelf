@@ -30,7 +30,7 @@ public class MyBookActivity  extends AppCompatActivity {
       return;
     }
 
-    MyBookListFragment myBookListFragment = new MyBookListFragment(1);
+    MyBookListFragment myBookListFragment = new MyBookListFragment(userId);
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
