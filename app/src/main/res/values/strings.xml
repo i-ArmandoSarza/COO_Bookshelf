@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">COO_Bookshelf</string>
-    <string name="Title_Text_View">Capital Citty Otters Bookshelf\nYour personal libary</string>
+    <string name="Title_Text_View">Capital City Otters Bookshelf\nYour personal library</string>
     <string name="First_Name_Edit_Box">Enter your first name</string>
     <string name="Email_Text_Box">Enter your email</string>
     <string name="Password_Text_Box">Enter your password</string>
@@ -30,10 +30,20 @@
     <string name="log_in">Log In</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-  <string name="book_cover">Book cover</string>
-  <string name="back">Back</string>
-  <string name="labelFor_detailAuthor_by">By:</string>
-  <string name="published">Published:</string>
-  <string name="isbn">ISBN:</string>
-  <string name="description">Description:</string>
+    <string name="book_cover">Book cover</string>
+    <string name="back">Back</string>
+    <string name="labelFor_detailAuthor_by">By:</string>
+    <string name="published">Published:</string>
+    <string name="isbn">ISBN:</string>
+    <string name="description">Description:</string>
+    <string name="back_arrow_text">←</string>
+    <string name="app_title_text">Capital City Otters Bookshelf</string>
+    <string name="version_text">Version 1.0</string>
+    <string name="app_purpose_text">This app was developed as a school project to demonstrate Android app development skills. It allows users to manage a simple personal library by adding, viewing, and searching books.</string>
+    <string name="created_by_text">Created by:</string>
+    <string name="group_names_text">• Rose Arias-Aceves\n• Kristine Barruzo\n• Steve Mendoza\n• Armando Sarza</string>
+    <string name="about_text">About</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="admin_settings_text">Admin Settings</string>
+    <string name="add_books_text">Add a Book</string>
 </resources>

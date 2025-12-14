@@ -2,6 +2,8 @@ package com.example.coo_bookshelf;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.database.entities.Book;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +32,12 @@ public class MyBookListFragment extends Fragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+
+    // BACK BUTTON FOR LIST SCREEN
+    TextView backButton = view.findViewById(R.id.backButton);
+    backButton.setOnClickListener(v -> {
+      requireActivity().finish();
+    });
 
     RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
