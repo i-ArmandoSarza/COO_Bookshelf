@@ -1,11 +1,10 @@
 package com.example.coo_bookshelf.bookseach;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.Context;
 import android.view.View;
 import android.widget.AdapterView;
-
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +12,10 @@ import androidx.appcompat.widget.SearchView;
 import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.databinding.ActivityMyBookSearchBinding;
 import com.example.coo_bookshelf.mybooks.MyBookItem;
+import com.example.coo_bookshelf.services.BookMapper;
 import com.example.coo_bookshelf.services.OpenLibraryService;
 import com.example.coo_bookshelf.services.model.SearchApiResponse;
 import java.util.ArrayList;
-import java.util.Locale;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -26,15 +25,18 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyBookSearchActivity extends AppCompatActivity {
+
   private static final String COVER_IMG_URL = "https://covers.openlibrary.org/b/id";
   private static final String BASE_URL = "https://openlibrary.org/";
   private ActivityMyBookSearchBinding binding;
   private int userId;
   private OpenLibraryService olsService;
+
   private enum SearchType {
     TITLE,
     AUTHOR
   }
+
   private SearchType currentSearchType = SearchType.TITLE;
   private OpenLibraryService service;
 
@@ -44,7 +46,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
     binding = ActivityMyBookSearchBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
     userId = getIntent().getIntExtra("USER_ID", -1);
-    if(userId == -1) {
+    if (userId == -1) {
       toastMaker("Error: no user ID.");
       finish();
       return;
@@ -78,7 +80,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
   }
 
   private void setupSearchTypeSpinner() {
-    String[] options = new String[] { "Title", "Author" };
+    String[] options = new String[]{"Title", "Author"};
 
     ArrayAdapter<String> adapter = new ArrayAdapter<>(
         this,
@@ -139,6 +141,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
       }
     });
   }
+
   private void getTitleSearchResults(String title) {
     if (olsService == null) {
       toastMaker("Service not initialized");
@@ -148,43 +151,16 @@ public class MyBookSearchActivity extends AppCompatActivity {
     // Adjust parameters based on your OpenLibraryService definition
     Call<SearchApiResponse> call = olsService.searchByTitle(title, "en");
 
-
     call.enqueue(new Callback<SearchApiResponse>() {
       @Override
       public void onResponse(Call<SearchApiResponse> call, Response<SearchApiResponse> response) {
         if (response.isSuccessful()) {
           SearchApiResponse searchApiResponse = response.body();
-          ArrayList<MyBookItem> myBookItems = new ArrayList<>();
+          ArrayList<MyBookItem> myBookItems = BookMapper.mapSearchResponseToMyBookItems(
+              response.body());
 
-          for (int i = 0; i < searchApiResponse.getDocs().size(); i++) {
-            if(searchApiResponse.getDocs().get(i).getAuthorKey() == null) {
-              // we don't want records with null author keys. Usually leads to most of the record
-              // null.
-              continue;
-            }
-
-            // Setup cover image url. We are using the ID from the cover_i field.
-            String coverUrl = String.format(Locale.ENGLISH,
-                "%s/%d-M.jpg",
-                COVER_IMG_URL,
-                searchApiResponse.getDocs().get(i).getCoverI());
-
-            // Create a MyBookItem object to load into the myBookItems List.
-            // Should be better null checking.
-            var book = new MyBookItem(
-                searchApiResponse.getDocs().get(i).getTitle(),
-                coverUrl,
-                searchApiResponse.getDocs().get(i).getAuthorNameFormated(),
-                "", // ISBN not available
-                searchApiResponse.getDocs().get(i).getFirstPublishYear().toString(),
-                "" // Description not available
-            );
-            // Set workId
-            book.setWorksId(searchApiResponse.getDocs().get(i).getKey()); // Contains the workId
-            myBookItems.add(book);
-          }
-           if(!myBookItems.isEmpty()){
-             showSearchResultsFragment(myBookItems);
+          if (!myBookItems.isEmpty()) {
+            showSearchResultsFragment(myBookItems);
           }
           toastMaker("Found results for title: " + title);
         } else {
@@ -240,6 +216,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
     intent.putExtra("USER_ID", userId);
     return intent;
   }
+
   private void toastMaker(String message) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }

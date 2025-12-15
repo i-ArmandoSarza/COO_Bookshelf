@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class DocumentsResponse {
+
   @SerializedName("author_key")
   @Expose
   private List<String> authorKey;
@@ -68,11 +69,11 @@ public class DocumentsResponse {
 
   // Returns the string in a format that can be displayed to the user.
   public String getAuthorNameFormated() {
-    if(authorName.isEmpty()){
+    if (authorName.isEmpty()) {
       return "";
     }
 
-    if(authorName.size() == 1){
+    if (authorName.size() == 1) {
       return authorName.get(0);
     }
 

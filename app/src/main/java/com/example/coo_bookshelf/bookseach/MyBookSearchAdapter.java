@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.coo_bookshelf.R;
-import com.example.coo_bookshelf.mybooks.MyBookAdapter;
-import com.example.coo_bookshelf.mybooks.MyBookAdapter.OnItemClickListener;
-import com.example.coo_bookshelf.mybooks.MyBookAdapter.ViewHolder;
 import com.example.coo_bookshelf.mybooks.MyBookItem;
 import java.util.List;
 
@@ -20,8 +17,10 @@ public class MyBookSearchAdapter extends RecyclerView.Adapter<MyBookSearchAdapte
 
 
   public interface OnItemClickListener {
+
     void onItemClick(MyBookItem item);
   }
+
   private List<MyBookItem> items;
   private OnItemClickListener listener;
 
@@ -29,7 +28,9 @@ public class MyBookSearchAdapter extends RecyclerView.Adapter<MyBookSearchAdapte
     this.items = items;
     this.listener = listener;
   }
+
   public static class ViewHolder extends RecyclerView.ViewHolder {
+
     ImageView imageItem;
     TextView textItem;
     TextView authorName;
@@ -60,7 +61,8 @@ public class MyBookSearchAdapter extends RecyclerView.Adapter<MyBookSearchAdapte
 
   @NonNull
   @Override
-  public MyBookSearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public MyBookSearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent,
+      int viewType) {
     View view = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.my_book_search_item_card, parent, false);  // Set the layout we want
     return new MyBookSearchAdapter.ViewHolder(view);
