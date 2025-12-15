@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.database.BookshelfRepository;
+import com.example.coo_bookshelf.database.entities.Book;
 import com.example.coo_bookshelf.mybooks.MyBookAdapter;
 import com.example.coo_bookshelf.mybooks.MyBookDetailFragment;
 import com.example.coo_bookshelf.mybooks.MyBookItem;
 import java.util.ArrayList;
 
-public class MyBookSearchListFragment extends Fragment  {
+public class MyBookSearchListFragment extends Fragment {
 
   private BookshelfRepository repository;
   private int USERID;
@@ -35,26 +36,27 @@ public class MyBookSearchListFragment extends Fragment  {
     RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-   // repository = BookshelfRepository.getRepository(requireActivity().getApplication());
+    repository = BookshelfRepository.getRepository(requireActivity().getApplication());
 
-    // Start with an empty list
-    //ArrayList<MyBookItem> myBookItems = new ArrayList<>();
+    // TODO: Get the Description from the /works api call.
 
     // Create adapter with empty list
     adapter = new MyBookSearchAdapter(myBookItems, selectedItem -> {
-      MyBookDetailFragment detailFragment = MyBookDetailFragment.newInstance(
+      Book bookToSave = new Book(
+          this.USERID,
           selectedItem.getTitle(),
-          selectedItem.getImageUrl(),
           selectedItem.getAuthor(),
-          selectedItem.getIsbn(),
-          selectedItem.getPublishDate(),
-          selectedItem.getDescription()
+          selectedItem.getAuthorKey(),
+          selectedItem.getWorksId()
       );
+      bookToSave.setImageUrl(selectedItem.getImageUrl());
+      bookToSave.setIsbn(selectedItem.getIsbn());
+      bookToSave.setFirstPublishedYear(selectedItem.getPublishDate());
 
-      requireActivity().getSupportFragmentManager().beginTransaction()
-          .replace(R.id.myBookFragmentContainerView, detailFragment)
-          .addToBackStack(null)
-          .commit();
+      // form api  selectedItem.getDescription()
+      repository.insert(bookToSave);
+
+
     });
 
     recyclerView.setAdapter(adapter);

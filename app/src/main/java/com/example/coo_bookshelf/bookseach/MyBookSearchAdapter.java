@@ -3,6 +3,7 @@ package com.example.coo_bookshelf.bookseach;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class MyBookSearchAdapter extends RecyclerView.Adapter<MyBookSearchAdapte
     TextView textItem;
     TextView authorName;
     TextView publishDate;
+    Button btnAddBook;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -43,10 +45,12 @@ public class MyBookSearchAdapter extends RecyclerView.Adapter<MyBookSearchAdapte
       textItem = itemView.findViewById(R.id.textItem);
       authorName = itemView.findViewById(R.id.textAuthor);
       publishDate = itemView.findViewById(R.id.textPublished);
+      btnAddBook = itemView.findViewById(R.id.btnAddBook);
     }
 
+    // Set up the onClick to save the datas.
     public void bind(MyBookItem item, OnItemClickListener listener) {
-      itemView.setOnClickListener(v -> {
+      btnAddBook.setOnClickListener(v -> {
         if (listener != null) {
           listener.onItemClick(item);
         }

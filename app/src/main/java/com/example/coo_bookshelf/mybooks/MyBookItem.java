@@ -9,6 +9,8 @@ public class MyBookItem {
   private String publishDate;
   private String description;
   private String worksId;
+  private String authorKey;
+
   public MyBookItem(String title, String imageUrl, String author, String isbn,
       String publishDate, String description) {
     this.title = title;
@@ -17,6 +19,14 @@ public class MyBookItem {
     this.isbn = isbn;
     this.publishDate = publishDate;
     this.description = description;
+  }
+
+  public String getAuthorKey() {
+    return authorKey;
+  }
+
+  public void setAuthorKey(String authorKey) {
+    this.authorKey = authorKey;
   }
 
   public String getWorksId() {
