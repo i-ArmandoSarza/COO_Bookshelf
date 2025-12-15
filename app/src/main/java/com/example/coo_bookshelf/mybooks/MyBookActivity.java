@@ -1,12 +1,12 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.database.BookshelfRepository;
-import com.example.coo_bookshelf.databinding.ActivityMainBinding;
 import com.example.coo_bookshelf.databinding.ActivityMyBooksBinding;
 
 
@@ -30,7 +30,7 @@ public class MyBookActivity  extends AppCompatActivity {
       return;
     }
 
-    MyBookListFragment myBookListFragment = new MyBookListFragment(1);
+    MyBookListFragment myBookListFragment = new MyBookListFragment(userId);
 
     if (savedInstanceState == null) {
       getSupportFragmentManager().beginTransaction()
@@ -40,7 +40,7 @@ public class MyBookActivity  extends AppCompatActivity {
   }
 
   // setup intent for MyBookActivity
-  static Intent MyBookActivityIntentFactory(Context context, int userId) {
+  public static Intent MyBookActivityIntentFactory(Context context, int userId) {
     Intent intent = new Intent(context, MyBookActivity.class);
     intent.putExtra("USER_ID", userId);
     return intent;

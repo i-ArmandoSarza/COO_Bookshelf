@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 public class MyBookItem {
 
@@ -8,6 +8,8 @@ public class MyBookItem {
   private String isbn;
   private String publishDate;
   private String description;
+  private String worksId;
+  private String authorKey;
 
   public MyBookItem(String title, String imageUrl, String author, String isbn,
       String publishDate, String description) {
@@ -17,6 +19,22 @@ public class MyBookItem {
     this.isbn = isbn;
     this.publishDate = publishDate;
     this.description = description;
+  }
+
+  public String getAuthorKey() {
+    return authorKey;
+  }
+
+  public void setAuthorKey(String authorKey) {
+    this.authorKey = authorKey;
+  }
+
+  public String getWorksId() {
+    return worksId;
+  }
+
+  public void setWorksId(String worksId) {
+    this.worksId = worksId;
   }
 
   public String getIsbn() {
@@ -55,7 +73,23 @@ public class MyBookItem {
     return imageUrl;
   }
 
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
+  }
+
   public String getAuthor() {
+    if (this.author.isEmpty()) {
+      return "";
+    }
+
     return author;
+  }
+
+  public void setAuthor(String author) {
+    this.author = author;
+  }
+
+  public String getPublishedDate() {
+    return this.publishDate;
   }
 }

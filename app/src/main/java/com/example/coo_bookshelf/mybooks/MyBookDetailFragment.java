@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
+import com.example.coo_bookshelf.R;
 
-public class MyBookDetailFragment  extends Fragment {
+public class MyBookDetailFragment extends Fragment {
 
   private static final String BOOK_TITLE = "book_title";
   private static final String BOOK_IMAGE_URL = "book_image_url";
@@ -26,7 +27,7 @@ public class MyBookDetailFragment  extends Fragment {
   }
 
   public static MyBookDetailFragment newInstance(String title, String imageUrl, String author
-  , String isbn, String publishDate, String description) {
+      , String isbn, String publishDate, String description) {
     MyBookDetailFragment fragment = new MyBookDetailFragment();
     Bundle args = new Bundle();
 
@@ -54,14 +55,12 @@ public class MyBookDetailFragment  extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     TextView backButton = view.findViewById(R.id.backButton);
-    ImageView detailImage = view.findViewById(R.id.detailImage);
+    ImageView detailImage = view.findViewById(R.id.book_cover);
     TextView detailTitle = view.findViewById(R.id.detailTitle);
     TextView detailAuthor = view.findViewById(R.id.detailAuthor);
     TextView detailPublishDate = view.findViewById(R.id.bookPublishDate);
     TextView detailDescription = view.findViewById(R.id.bookDescription);
     TextView detailIsbn = view.findViewById(R.id.bookIsbn);
-
-
 
     backButton.setOnClickListener(v -> {
       requireActivity().getSupportFragmentManager().popBackStack();
@@ -80,7 +79,6 @@ public class MyBookDetailFragment  extends Fragment {
       detailPublishDate.setText(publishDate);
       detailDescription.setText(description);
       detailIsbn.setText(isbn);
-
 
       Glide.with(requireContext())
           .load(imageUrl)

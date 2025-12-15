@@ -36,6 +36,8 @@
     <string name="published">Published:</string>
     <string name="isbn">ISBN:</string>
     <string name="description">Description:</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
     <string name="back_arrow_text">←</string>
     <string name="app_title_text">Capital City Otters Bookshelf</string>
     <string name="version_text">Version 1.0</string>

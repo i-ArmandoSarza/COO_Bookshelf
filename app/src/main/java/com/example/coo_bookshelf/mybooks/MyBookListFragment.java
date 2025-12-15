@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.mybooks;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,14 +9,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.database.entities.Book;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 
 public class MyBookListFragment extends Fragment {
 
