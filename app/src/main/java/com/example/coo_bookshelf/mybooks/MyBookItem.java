@@ -68,10 +68,18 @@ public class MyBookItem {
   }
 
   public String getAuthor() {
+    if (this.author.isEmpty()) {
+      return "";
+    }
+
     return author;
   }
 
   public void setAuthor(String author) {
     this.author = author;
+  }
+
+  public String getPublishedDate() {
+    return this.publishDate;
   }
 }

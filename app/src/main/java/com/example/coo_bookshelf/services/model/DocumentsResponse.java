@@ -66,6 +66,24 @@ public class DocumentsResponse {
     return authorName;
   }
 
+  // Returns the string in a format that can be displayed to the user.
+  public String getAuthorNameFormated() {
+    if(authorName.isEmpty()){
+      return "";
+    }
+
+    if(authorName.size() == 1){
+      return authorName.get(0);
+    }
+
+    StringBuilder sb = new StringBuilder();
+    for (String name : authorName) {
+      sb.append(name).append(", ");
+    }
+
+    return sb.toString();
+  }
+
   public void setAuthorName(List<String> authorName) {
     this.authorName = authorName;
   }

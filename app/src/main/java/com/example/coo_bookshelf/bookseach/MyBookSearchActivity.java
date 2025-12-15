@@ -174,7 +174,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
             var book = new MyBookItem(
                 searchApiResponse.getDocs().get(i).getTitle(),
                 coverUrl,
-                searchApiResponse.getDocs().get(i).getAuthorName().toString(),
+                searchApiResponse.getDocs().get(i).getAuthorNameFormated(),
                 "", // ISBN not available
                 searchApiResponse.getDocs().get(i).getFirstPublishYear().toString(),
                 "" // Description not available

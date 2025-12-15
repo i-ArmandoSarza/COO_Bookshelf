@@ -19,7 +19,7 @@ public class MyBookSearchListFragment extends Fragment  {
   private BookshelfRepository repository;
   private int USERID;
   private ArrayList<MyBookItem> myBookItems;
-  private MyBookAdapter adapter;
+  private MyBookSearchAdapter adapter;
 
 
   public MyBookSearchListFragment(int userId, ArrayList<MyBookItem> myBookItems) {
@@ -41,7 +41,7 @@ public class MyBookSearchListFragment extends Fragment  {
     //ArrayList<MyBookItem> myBookItems = new ArrayList<>();
 
     // Create adapter with empty list
-    adapter = new MyBookAdapter(myBookItems, selectedItem -> {
+    adapter = new MyBookSearchAdapter(myBookItems, selectedItem -> {
       MyBookDetailFragment detailFragment = MyBookDetailFragment.newInstance(
           selectedItem.getTitle(),
           selectedItem.getImageUrl(),
@@ -59,26 +59,5 @@ public class MyBookSearchListFragment extends Fragment  {
 
     recyclerView.setAdapter(adapter);
     adapter.notifyDataSetChanged();
-    // Observe LiveData
-//    repository.getBooksByUserId(USERID).observe(getViewLifecycleOwner(), books -> {
-//
-//      myBookItems.clear(); // Clear old data
-//
-//      if (books != null) {
-//        for (Book b : books) {
-//          myBookItems.add(new MyBookItem(
-//              b.getTitle(),
-//              b.getImageUrl(),
-//              b.getAuthor(),
-//              b.getIsbn(),
-//              b.getFirstPublishedYear(),
-//              b.getDescription()
-//          ));
-//        }
-//      }
-//
-//      // Notify the adapter that data changed
-//      adapter.notifyDataSetChanged();
-//    });
   }
 }
