@@ -2,6 +2,7 @@ package com.example.coo_bookshelf.bookseach;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -40,7 +41,7 @@ public class MyBookSearchListFragment extends Fragment {
 
     // TODO: Get the Description from the /works api call.
 
-    // Create adapter with empty list
+    // Setup up the data and the items that are selected
     adapter = new MyBookSearchAdapter(myBookItems, selectedItem -> {
       Book bookToSave = new Book(
           this.USERID,
@@ -55,7 +56,7 @@ public class MyBookSearchListFragment extends Fragment {
 
       // form api  selectedItem.getDescription()
       repository.insert(bookToSave);
-
+      Toast.makeText(requireContext(), "Book added to your shelf", Toast.LENGTH_SHORT).show();
 
     });
 
