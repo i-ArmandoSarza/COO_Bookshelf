@@ -6,8 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.coo_bookshelf.bookseach.MyBookSearchActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
@@ -54,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
     }
     welcomeScreen();
 
+    // Menu Button
+    setSupportActionBar(binding.toolbar);
+    if(getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    // View my books onClick
     binding.MyBooksButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -61,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
-    // Create an intent to start  MyBookActivity if the MyBooksButton is clicked.
+
+    // Search for books onClick
     binding.SearchBooksButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -79,6 +91,36 @@ public class MainActivity extends AppCompatActivity {
 
   private void toastMaker(String message) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  }
+
+  //============================================
+  //    Main Menu Options --> About |  Sign Out
+  //============================================
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.main_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    int id = item.getItemId();
+
+    // About Text -> About page
+    if(item.getItemId() == R.id.menu_about) {
+      Intent intent = new Intent(this, AboutActivity.class);
+      startActivity(intent);
+      return true;
+    }
+
+    // Sign Out Text --> Login page
+    if(item.getItemId() == R.id.menu_signout) {
+      // Go back to login screen
+      startActivity(LoginPageActivity.loginIntentFactory(this));
+      finish();
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   private void welcomeScreen() {

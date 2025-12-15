@@ -1,114 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/main"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/backgroundlogin"
-  tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundlogin"
+    tools:context=".MainActivity">
 
-  <Button
-    android:id="@+id/MyBooksButton"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="72dp"
-    android:layout_marginBottom="24dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="#6F8FAF"
-    android:text="@string/my_books"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/LibrarySizeTextView" />
-  <Button
-    android:id="@+id/AddABookButton"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="24dp"
-    android:layout_marginBottom="24dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="#6F8FAF"
-    android:text="Add a Book"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/MyBooksButton" />
-  <Button
-    android:id="@+id/SearchBooksButton"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="24dp"
-    android:layout_marginBottom="24dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="#6F8FAF"
-    android:text="@string/search_discover_books"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/AddABookButton" />
-  <Button
-    android:id="@+id/AdminButton"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="24dp"
-    android:layout_marginBottom="24dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="#6F8FAF"
-    android:text="Admin Settings"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/SearchBooksButton" />
+    <!-- Top App Bar (ToolBar Menu) -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="35dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-  <ImageView
-    android:id="@+id/LogoLandingImageView"
-    android:layout_width="96dp"
-    android:layout_height="96dp"
-    android:layout_marginTop="90dp"
-    android:contentDescription="@string/Login_Logo"
-    android:src="@drawable/bookshelflogo"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-  <TextView
-    android:id="@+id/LibrarySizeTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:gravity="center"
-    android:text="@string/you_currently_have_s_books_in_your_bookshelf"
-    android:textSize="12sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/WelcomeTitleTextView" />
-  <TextView
-    android:id="@+id/WelcomeTitleTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="24dp"
-    android:gravity="center"
-    android:text="@string/welcome_username"
-    android:textSize="30sp"
-    app:layout_constraintStart_toStartOf="parent"
+    <!-- "Admin View" label (only visible for admins) -->
+    <TextView
+        android:id="@+id/IsAdminLandingPageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:gravity="center"
+        android:text="@string/admin_view"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"/>
 
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/LogoLandingImageView" />
-  <TextView
-    android:id="@+id/IsAdminLandingPageTextView"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="55dp"
-    android:gravity="center"
-    android:text="@string/admin_view"
-    android:textSize="24sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/LogoLandingImageView"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="24dp"
+        android:contentDescription="@string/Login_Logo"
+        android:src="@drawable/bookshelflogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/IsAdminLandingPageTextView"
+        app:layout_goneMarginTop="32dp"/>
+
+    <!-- "Welcome, <username>" title -->
+    <TextView
+        android:id="@+id/WelcomeTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="@string/welcome_username"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LogoLandingImageView" />
+
+    <!-- "You currently have X books..." -->
+    <TextView
+        android:id="@+id/LibrarySizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/you_currently_have_s_books_in_your_bookshelf"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/WelcomeTitleTextView" />
+
+    <!-- ───────────────────────────────
+         MAIN ACTION BUTTONS
+         ─────────────────────────────── -->
+
+    <!-- My Books button -->
+    <Button
+        android:id="@+id/MyBooksButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="#618CFC"
+        android:text="@string/my_books"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LibrarySizeTextView" />
+
+    <!-- "Add a Book" button -->
+    <Button
+        android:id="@+id/AddABookButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="#618CFC"
+        android:text="@string/add_books_text"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MyBooksButton" />
+
+    <!-- "Search / Discover Books" button -->
+    <Button
+        android:id="@+id/SearchBooksButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="#618CFC"
+        android:text="@string/search_discover_books"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AddABookButton" />
+
+    <!-- "Admin Settings" button (only visible for admins) -->
+    <Button
+        android:id="@+id/AdminButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="#618CFC"
+        android:text="@string/admin_settings_text"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SearchBooksButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
