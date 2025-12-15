@@ -55,7 +55,7 @@ public class MyBookDetailFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
 
     TextView backButton = view.findViewById(R.id.backButton);
-    ImageView detailImage = view.findViewById(R.id.detailImage);
+    ImageView detailImage = view.findViewById(R.id.book_cover);
     TextView detailTitle = view.findViewById(R.id.detailTitle);
     TextView detailAuthor = view.findViewById(R.id.detailAuthor);
     TextView detailPublishDate = view.findViewById(R.id.bookPublishDate);

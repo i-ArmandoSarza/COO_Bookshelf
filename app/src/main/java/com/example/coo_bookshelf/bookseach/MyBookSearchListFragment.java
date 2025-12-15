@@ -36,7 +36,7 @@ public class MyBookSearchListFragment extends Fragment {
   private OpenLibraryService olsService;
 
   public MyBookSearchListFragment(int userId, ArrayList<MyBookItem> myBookItems) {
-    super(R.layout.my_book_list_fragment);
+    super(R.layout.my_book_search_list_fragment);
     this.USERID = userId;
     this.myBookItems = myBookItems;
   }
@@ -45,7 +45,7 @@ public class MyBookSearchListFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+    RecyclerView recyclerView = view.findViewById(R.id.myBookSearchRecyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     repository = BookshelfRepository.getRepository(requireActivity().getApplication());
