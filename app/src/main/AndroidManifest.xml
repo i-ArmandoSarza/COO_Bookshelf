@@ -13,6 +13,12 @@
     android:theme="@style/Theme.COO_Bookshelf">
     <activity
       android:exported="false"
+      android:name=".booksearch.MyBookSearchActivity" />
+    <activity
+      android:exported="false"
+      android:name=".AboutActivity" />
+    <activity
+      android:exported="false"
       android:name=".AdminSettings" />
     <activity
       android:exported="false"
@@ -35,9 +41,8 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".MyBookActivity" />
+    <activity android:name=".mybooks.MyBookActivity" />
   </application>
-
   <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

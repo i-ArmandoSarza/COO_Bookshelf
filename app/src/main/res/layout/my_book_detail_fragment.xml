@@ -1,114 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:padding="16dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <Button
-      android:id="@+id/backButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/back" />
+        <!-- Back arrow at top, similar to About page -->
+        <TextView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:text="@string/back_arrow_text"
+            android:textSize="30sp" />
 
-    <ImageView
-      android:contentDescription="@string/book_cover"
-      android:id="@+id/detailImage"
-      android:layout_width="match_parent"
-      android:layout_height="400dp"
-      android:layout_marginTop="12dp"
-      android:scaleType="centerCrop" />
-    <TextView
-      android:id="@+id/detailTitle"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:textSize="22sp"
-      android:layout_marginTop="12dp"
-      android:textStyle="bold" />
+        <!-- Book cover image -->
+        <ImageView
+            android:id="@+id/book_cover"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/book_cover"
+            android:scaleType="centerCrop" />
+
+        <!-- Book Title -->
+        <TextView
+            android:id="@+id/detailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
 
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:orientation="horizontal">
+        <!-- Author row: "By: <author>" -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
 
-      <TextView
-        android:id="@+id/labelFor_detailAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="@string/labelFor_detailAuthor_by"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+            <TextView
+                android:id="@+id/labelFor_detailAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/labelFor_detailAuthor_by"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-      <TextView
-        android:id="@+id/detailAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
+            <TextView
+                android:id="@+id/detailAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <!-- Published row -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelFor_bookPublishDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@string/published"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/bookPublishDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <!-- ISBN row -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labelFor_bookIsbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/isbn"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/bookIsbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <!-- Description label -->
+        <TextView
+            android:id="@+id/labelFor_bookDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:text="@string/description"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/bookDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
     </LinearLayout>
-
-
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:orientation="horizontal">
-      <TextView
-        android:id="@+id/labelFor_bookPublishDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="@string/published"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-      <TextView
-        android:id="@+id/bookPublishDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="8dp"
-      android:orientation="horizontal">
-      <TextView
-        android:id="@+id/labelFor_bookIsbn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/isbn"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-      <TextView
-        android:id="@+id/bookIsbn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
-    </LinearLayout>
-
-
-      <TextView
-        android:id="@+id/labelFor_bookDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/description"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-      <TextView
-        android:id="@+id/bookDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp" />
-
-  </LinearLayout>
 </ScrollView>

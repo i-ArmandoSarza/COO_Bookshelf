@@ -54,12 +54,12 @@ public class BookCategory {
   }
 
   @PrimaryKey(autoGenerate = true)
-  @ColumnInfo(name="BookCategoryId")
+  @ColumnInfo(name = "BookCategoryId")
   private int bookCategoryId;
 
-  @ColumnInfo(name="BookID")
+  @ColumnInfo(name = "BookID")
   private int bookID;
-  @ColumnInfo(name="CategoryID")
+  @ColumnInfo(name = "CategoryID")
   private int categoryID;
 
 }

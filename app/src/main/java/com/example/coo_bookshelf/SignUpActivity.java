@@ -34,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         // Show screen on the device
         setContentView(binding.getRoot());
 
+
         userDAO = BookshelfDatabase.getDatabase(this).userDAO();
         // Android does not allow database operations on the main thread.
         // We use an Executor to run database operations on a background thread.
@@ -108,4 +109,5 @@ public class SignUpActivity extends AppCompatActivity {
     static Intent signUpIntentFactory(Context context) {
         return new Intent(context, SignUpActivity.class);
     }
+
 }
