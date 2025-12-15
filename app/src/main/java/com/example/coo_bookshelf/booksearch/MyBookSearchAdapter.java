@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf.bookseach;
+package com.example.coo_bookshelf.booksearch;
 
 import android.view.LayoutInflater;
 import android.view.View;

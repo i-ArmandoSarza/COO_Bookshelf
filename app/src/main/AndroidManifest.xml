@@ -15,7 +15,7 @@
         android:theme="@style/Theme.COO_Bookshelf">
       <activity
         android:exported="false"
-        android:name=".bookseach.MyBookSearchActivity" />
+        android:name=".booksearch.MyBookSearchActivity" />
         <activity
             android:name=".AboutActivity"
             android:exported="false" />

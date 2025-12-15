@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.coo_bookshelf.bookseach.MyBookSearchActivity;
+import com.example.coo_bookshelf.booksearch.MyBookSearchActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityMainBinding;
 import com.example.coo_bookshelf.mybooks.MyBookActivity;
