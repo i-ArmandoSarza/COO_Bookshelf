@@ -81,7 +81,7 @@ public class MyBookSearchListFragment extends Fragment {
           Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
         }
       });
-      Toast.makeText(requireContext(), "Book added to your shelf", Toast.LENGTH_SHORT).show();
+
     });
 
     recyclerView.setAdapter(adapter);
@@ -113,7 +113,6 @@ public class MyBookSearchListFragment extends Fragment {
           callback.onError("Failed to get title details. Code: " + response.code());
         }
       }
-
       @Override
       public void onFailure(Call<WorksApiResponse> call, Throwable t) {
         // On a network failure, call the error callback
