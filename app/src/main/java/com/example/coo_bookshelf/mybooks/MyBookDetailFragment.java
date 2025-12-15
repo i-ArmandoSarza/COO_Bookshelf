@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.coo_bookshelf.R;
 
-public class MyBookDetailFragment  extends Fragment {
+public class MyBookDetailFragment extends Fragment {
 
   private static final String BOOK_TITLE = "book_title";
   private static final String BOOK_IMAGE_URL = "book_image_url";
@@ -27,7 +27,7 @@ public class MyBookDetailFragment  extends Fragment {
   }
 
   public static MyBookDetailFragment newInstance(String title, String imageUrl, String author
-  , String isbn, String publishDate, String description) {
+      , String isbn, String publishDate, String description) {
     MyBookDetailFragment fragment = new MyBookDetailFragment();
     Bundle args = new Bundle();
 
@@ -62,8 +62,6 @@ public class MyBookDetailFragment  extends Fragment {
     TextView detailDescription = view.findViewById(R.id.bookDescription);
     TextView detailIsbn = view.findViewById(R.id.bookIsbn);
 
-
-
     backButton.setOnClickListener(v -> {
       requireActivity().getSupportFragmentManager().popBackStack();
     });
@@ -81,7 +79,6 @@ public class MyBookDetailFragment  extends Fragment {
       detailPublishDate.setText(publishDate);
       detailDescription.setText(description);
       detailIsbn.setText(isbn);
-
 
       Glide.with(requireContext())
           .load(imageUrl)
