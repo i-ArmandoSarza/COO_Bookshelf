@@ -7,6 +7,14 @@ import com.example.coo_bookshelf.database.entities.User;
 
 import org.junit.Test;
 
+/**
+ * Author: Armando Sarza
+ * Date: 2025-12-14
+ * Description: Tests that a newly created User is not an admin by default.
+ *  -> Creates a User using the email + password constructor.
+ *  -> Verifies the email and password fields are stored correctly.
+ *  -> Verifies the isAdmin flag is set to false for the new User.
+ */
 public class UserEntityTest {
 
     @Test
