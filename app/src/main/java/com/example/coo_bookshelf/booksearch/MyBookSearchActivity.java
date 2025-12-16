@@ -161,8 +161,10 @@ public class MyBookSearchActivity extends AppCompatActivity {
 
           if (!myBookItems.isEmpty()) {
             showSearchResultsFragment(myBookItems);
+            toastMaker("Found results for title: " + title);
+          } else {
+            toastMaker("No results for title: " + title);
           }
-          toastMaker("Found results for title: " + title);
         } else {
           toastMaker("Title search error: " + response.code());
         }
@@ -194,8 +196,10 @@ public class MyBookSearchActivity extends AppCompatActivity {
 
           if (!myBookItems.isEmpty()) {
             showSearchResultsFragment(myBookItems);
+            toastMaker("Found results for author: " + author);
+          } else {
+            toastMaker("No results for author: " + author);
           }
-          toastMaker("Found results for author: " + author);
         } else {
           toastMaker("Author search error: " + response.code());
         }
