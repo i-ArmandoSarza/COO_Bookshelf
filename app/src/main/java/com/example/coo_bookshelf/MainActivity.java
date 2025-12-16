@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.coo_bookshelf.booksearch.MyBookSearchActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityMainBinding;
+import com.example.coo_bookshelf.mybooks.MyBookActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
       getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
+    // View my books onClick
     binding.MyBooksButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -69,10 +72,20 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
       }
     });
+
+    // Search for books onClick
+    binding.SearchBooksButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = MyBookSearchActivity.MyBookSearchActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        startActivity(intent);
+      }
+    });
   }
 
   private void userLogin() {
     //TODO: Create login method
+    //TODO: Create a logout button
     loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
   }
 

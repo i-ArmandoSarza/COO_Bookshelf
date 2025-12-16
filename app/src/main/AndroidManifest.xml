@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.COO_Bookshelf">
+      <activity
+        android:exported="false"
+        android:name=".booksearch.MyBookSearchActivity" />
         <activity
             android:name=".AboutActivity"
             android:exported="false" />
@@ -34,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyBookActivity" />
+        <activity android:name=".mybooks.MyBookActivity" />
     </application>
 
 </manifest>

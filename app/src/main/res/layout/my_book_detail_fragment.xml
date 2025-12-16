@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
         <!-- Back arrow at top, similar to About page -->
         <TextView
@@ -23,7 +23,7 @@
 
         <!-- Book cover image -->
         <ImageView
-            android:id="@+id/detailImage"
+            android:id="@+id/book_cover"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_marginTop="12dp"
