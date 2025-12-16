@@ -48,4 +48,5 @@
     <string name="sign_out_text">Sign Out</string>
     <string name="admin_settings_text">Admin Settings</string>
     <string name="add_books_text">Add a Book</string>
+    <string name="notification_text">Notifications</string>
 </resources>
