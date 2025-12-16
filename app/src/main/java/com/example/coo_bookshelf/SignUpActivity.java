@@ -70,7 +70,25 @@ public class SignUpActivity extends AppCompatActivity {
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // Create the user and insert into database (this runs off the main thread)
+                        // Check if a user with this email already exists
+                        int existingUserId = userDAO.getUserIdByUserEmailSync(email);
+
+                        if (existingUserId > 0) {
+                            // Email already in use -> show Toast on main thread and stop
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(
+                                            SignUpActivity.this,
+                                            "An account with this email already exists.",
+                                            Toast.LENGTH_SHORT
+                                    ).show();
+                                }
+                            });
+                            return; // Don't insert a duplicate user
+                        }
+
+                        // No existing user found -> proceed to insert new user
                         User user = new User(email, password);
                         userDAO.insert(user);
 
