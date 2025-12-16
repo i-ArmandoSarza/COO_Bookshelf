@@ -12,9 +12,13 @@ import com.example.coo_bookshelf.databinding.ActivityAdditionalUserInfoBinding;
 
 public class AdditionalUserInfoActivity extends AppCompatActivity {
 
+    private static final String USER_ID_KEY = "com.example.coo_bookshelf.USER_ID";
+    private static final String USER_EMAIL_KEY = "com.example.coo_bookshelf.USER_EMAIL";
+
     private ActivityAdditionalUserInfoBinding binding;
     private static BookshelfRepository repository;
-    private int userId;
+    private int userId = -1;
+    private String userEmail = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,10 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
 
         binding = ActivityAdditionalUserInfoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        userId = intent.getIntExtra(USER_ID_KEY, -1);
+        userEmail = intent.getStringExtra(USER_EMAIL_KEY);
 
         repository = BookshelfRepository.getRepository(getApplication());
 
@@ -41,6 +49,7 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
     public static Intent additionalInfoIntentFactory(Context context, int userId, String email) {
         Intent intent = new Intent(context, AdditionalUserInfoActivity.class);
         intent.putExtra("USER_ID", userId);
+        intent.putExtra("USER_EMAIL", email); // Add email to intent extras
         return intent;
     }
 
@@ -56,8 +65,12 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
         // Update DB via repository
         repository.updateUserName(userId, firstName, lastName);
 
-        // Go to MainActivity with the same userId
-        Intent intent = MainActivity.mainActivityIntentFactory(this, userId);
+        // Go to MainActivity with the same userId and email
+        Intent intent = MainActivity.mainActivityIntentFactory(
+                AdditionalUserInfoActivity.this,
+                userId,
+                userEmail
+        );
         startActivity(intent);
         finish();
     }
