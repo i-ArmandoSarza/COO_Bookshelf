@@ -1,4 +1,4 @@
-package com.example.coo_bookshelf.viewHolders;
+package com.example.coo_bookshelf.admin;
 
 import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;

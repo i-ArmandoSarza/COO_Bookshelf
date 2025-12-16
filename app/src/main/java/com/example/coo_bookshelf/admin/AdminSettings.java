@@ -1,19 +1,13 @@
-package com.example.coo_bookshelf;
+package com.example.coo_bookshelf.admin;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
-import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityAdminSettingsBinding;
-import com.example.coo_bookshelf.databinding.ActivityMyBooksBinding;
 
 
 public class AdminSettings extends AppCompatActivity {
@@ -41,7 +35,7 @@ public class AdminSettings extends AppCompatActivity {
   }
 
   // setup intent for AdminSettings
-  static Intent AdminSettingsIntentFactory(Context context) {
+  public static Intent AdminSettingsIntentFactory(Context context) {
     Intent intent = new Intent(context, AdminSettings.class);
     return intent;
   }
