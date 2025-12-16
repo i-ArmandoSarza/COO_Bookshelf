@@ -38,7 +38,7 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
 
     }
 
-    public static Intent additionalInfoIntentFactory(Context context, int userId) {
+    public static Intent additionalInfoIntentFactory(Context context, int userId, String email) {
         Intent intent = new Intent(context, AdditionalUserInfoActivity.class);
         intent.putExtra("USER_ID", userId);
         return intent;

@@ -83,7 +83,9 @@ public class SignUpActivity extends AppCompatActivity {
                             public void run() {
                                 // Go to MainActivity with this user id
                                 Intent intent = AdditionalUserInfoActivity.additionalInfoIntentFactory(
-                                        SignUpActivity.this, newUserId
+                                        SignUpActivity.this,
+                                        newUserId,
+                                        email
                                 );
                                 startActivity(intent);
                                 finish();
