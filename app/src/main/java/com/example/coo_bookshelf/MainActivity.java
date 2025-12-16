@@ -22,17 +22,27 @@ import com.example.coo_bookshelf.mybooks.MyBookActivity;
 public class MainActivity extends AppCompatActivity {
 
   public static final String TAG = "CCO_Bookshelf";
-  private static final String USER_ID = "com.example.coo_bookshelf.USER_ID";
+
+  // Key for passing user info into MainActivity
+  private static final String USER_BUNDLE_KEY = "com.example.coo_bookshelf.USER_BUNDLE_KEY";
+  private static final String USER_ID_KEY = "USER_ID";
+  private static final String USER_EMAIL_KEY = "USER_EMAIL";
+
   private static BookshelfRepository repository;
   private ActivityMainBinding binding;
   // Variable to hold logged in user ID. -1 means no user is logged in.
   int loggedInUserId = -1;
+  String loggedInUserEmail = "";
 
-  // Method makes an intent to start MainActivity.
-  static Intent mainActivityIntentFactory(Context context, int userId) {
+  // Method makes an intent to start MainActivity with user data.
+  static Intent mainActivityIntentFactory(Context context, int userId, String email) {
     Intent intent = new Intent(context, MainActivity.class);
-    // Puts the user ID into the intent to pass to MainActivity.
-    intent.putExtra(USER_ID, userId);
+
+    Bundle userBundle = new Bundle();
+    userBundle.putInt(USER_ID_KEY, userId);
+    userBundle.putString(USER_EMAIL_KEY, email);
+
+    intent.putExtra(USER_BUNDLE_KEY, userBundle);
     return intent;
   }
 
@@ -51,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
     userLogin();
 
-    // Creates an intent to start LoginPageActivity if no user is logged in.
+    // Creates an intent to start LoginPageActivity if no user is logged in
     if (loggedInUserId == -1) {
-      Intent intent = LoginPageActivity.loginIntentFactory(getApplicationContext());
-      startActivity(intent);
+      // No user info -> go back to login screen
+      startActivity(LoginPageActivity.loginIntentFactory(this));
+      finish();
+      return;
     }
+    // If userId is valid, show welcome screen
     welcomeScreen();
 
     // Menu Button
@@ -84,9 +97,17 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void userLogin() {
-    //TODO: Create login method
-    //TODO: Create a logout button
-    loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
+    // Read user bundle from the Intent
+    Bundle userBundle = getIntent().getBundleExtra(USER_BUNDLE_KEY);
+
+    if (userBundle != null) {
+      loggedInUserId = userBundle.getInt(USER_ID_KEY, -1);
+      loggedInUserEmail = userBundle.getString(USER_EMAIL_KEY, "");
+    } else {
+      loggedInUserId = -1;
+      loggedInUserEmail = "";
+    }
+
   }
 
   private void toastMaker(String message) {
@@ -130,19 +151,28 @@ public class MainActivity extends AppCompatActivity {
       // Stop observing after first result so we don't get repeated callbacks
       userLiveData.removeObservers(this);
 
-      //shouldn't happen but just in case
       if (user != null) {
+        //shouldn't happen but just in case, fall back to email
+        String fallback = loggedInUserEmail.isEmpty()
+                ? "Welcome!"
+                : "Welcome " + loggedInUserEmail + "!";
+        binding.WelcomeTitleTextView.setText(fallback);
+        return;
+      }
 
         if(!user.isAdmin()){
           binding.IsAdminLandingPageTextView.setText("");
           binding.AdminButton.setVisibility(GONE);
         }
 
+        // Prefer first name, fallback to email
         String name = user.getFirstName();
-        String welcomeMessage = "Welcome " + name + "!";
-        binding.WelcomeTitleTextView.setText(welcomeMessage);
+        String displayName = (name == null || name.trim().isEmpty())
+                ? user.getEmail()
+                : name;
 
-      }
+        String welcomeMessage = "Welcome " + displayName + "!";
+        binding.WelcomeTitleTextView.setText(welcomeMessage);
     });
   }
 }
