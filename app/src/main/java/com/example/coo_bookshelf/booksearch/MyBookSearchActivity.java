@@ -38,7 +38,7 @@ public class MyBookSearchActivity extends AppCompatActivity {
   }
 
   private SearchType currentSearchType = SearchType.TITLE;
-  private OpenLibraryService service;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -176,20 +176,25 @@ public class MyBookSearchActivity extends AppCompatActivity {
   }
 
   private void getAuthorSearchResults(String author) {
-    if (service == null) {
+    if (olsService == null) {
       toastMaker("Service not initialized");
       return;
     }
 
     // Adjust parameters based on your OpenLibraryService definition
-    Call<SearchApiResponse> call = service.searchByAuthor(author, "en");
+    Call<SearchApiResponse> call = olsService.searchByAuthor(author, "en");
 
     call.enqueue(new Callback<SearchApiResponse>() {
       @Override
       public void onResponse(Call<SearchApiResponse> call, Response<SearchApiResponse> response) {
         if (response.isSuccessful()) {
           SearchApiResponse searchApiResponse = response.body();
-          // TODO: update UI or fragment with the results
+          ArrayList<MyBookItem> myBookItems = BookMapper.mapSearchResponseToMyBookItems(
+              response.body());
+
+          if (!myBookItems.isEmpty()) {
+            showSearchResultsFragment(myBookItems);
+          }
           toastMaker("Found results for author: " + author);
         } else {
           toastMaker("Author search error: " + response.code());
