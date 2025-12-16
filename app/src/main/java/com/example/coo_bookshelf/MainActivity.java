@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Menu Button
     setSupportActionBar(binding.toolbar);
-    if(getSupportActionBar() != null) {
+    if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
@@ -128,14 +128,14 @@ public class MainActivity extends AppCompatActivity {
     int id = item.getItemId();
 
     // About Text -> About page
-    if(item.getItemId() == R.id.menu_about) {
+    if (item.getItemId() == R.id.menu_about) {
       Intent intent = new Intent(this, AboutActivity.class);
       startActivity(intent);
       return true;
     }
 
     // Sign Out Text --> Login page
-    if(item.getItemId() == R.id.menu_signout) {
+    if (item.getItemId() == R.id.menu_signout) {
       // Go back to login screen
       startActivity(LoginPageActivity.loginIntentFactory(this));
       finish();
@@ -151,28 +151,26 @@ public class MainActivity extends AppCompatActivity {
       // Stop observing after first result so we don't get repeated callbacks
       userLiveData.removeObservers(this);
 
-      if (user != null) {
-        //shouldn't happen but just in case, fall back to email
-        String fallback = loggedInUserEmail.isEmpty()
-                ? "Welcome!"
-                : "Welcome " + loggedInUserEmail + "!";
-        binding.WelcomeTitleTextView.setText(fallback);
+      if (user == null) {
+        // If somehow no user was found, show generic Welcome message
+        binding.WelcomeTitleTextView.setText("Welcome!");
         return;
       }
 
-        if(!user.isAdmin()){
-          binding.IsAdminLandingPageTextView.setText("");
-          binding.AdminButton.setVisibility(GONE);
-        }
+      // If user is not admin, hide admin button and text
+      if (!user.isAdmin()) {
+        binding.IsAdminLandingPageTextView.setText("");
+        binding.AdminButton.setVisibility(GONE);
+      }
 
-        // Prefer first name, fallback to email
-        String name = user.getFirstName();
-        String displayName = (name == null || name.trim().isEmpty())
-                ? user.getEmail()
-                : name;
-
-        String welcomeMessage = "Welcome " + displayName + "!";
-        binding.WelcomeTitleTextView.setText(welcomeMessage);
+      // Show ONLY first name, no email
+      String firstName = user.getFirstName();
+      if (firstName != null && !firstName.trim().isEmpty()) {
+        binding.WelcomeTitleTextView.setText("Welcome " + firstName + "!");
+      } else {
+        // No first name set -> still don't show email
+        binding.WelcomeTitleTextView.setText("Welcome!");
+      }
     });
   }
 }
