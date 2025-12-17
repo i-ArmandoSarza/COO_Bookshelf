@@ -33,6 +33,14 @@ public class AdminCreateAccount extends AppCompatActivity {
     binding = ActivityAdminCreateAccountBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    // Setup Toolbar: back button
+    setSupportActionBar(binding.toolbar);
+    if(getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayShowTitleEnabled(false);    // hide title text
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);      // show back arrow
+      getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     userDAO = BookshelfDatabase.getDatabase(this).userDAO();
     //This section is adapted from the main signup page.
     // Android does not allow database operations on the main thread.
@@ -121,6 +129,11 @@ public class AdminCreateAccount extends AppCompatActivity {
   }
 
 
+  @Override
+  public boolean onSupportNavigateUp() {
+    finish();   // go back to previous Activity
+    return true;
+  }
 
 
   /** Helper method to open SignUpActivity from other activities */
