@@ -18,7 +18,7 @@ public interface OpenLibraryService {
 
   @Headers({"Accept: application/json"})
   @GET("/search")
-  public Call<SearchApiResponse> searchByAuthor(@Query("author.json") String author,
+  public Call<SearchApiResponse> searchByAuthor(@Query("author") String author,
       @Query("lang") String lang);
 
   @Headers({"Accept: application/json"})
