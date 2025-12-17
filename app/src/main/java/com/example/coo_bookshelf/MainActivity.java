@@ -30,7 +30,7 @@ import com.example.coo_bookshelf.mybooks.MyBookActivity;
 public class MainActivity extends AppCompatActivity {
 
   public static final String TAG = "CCO_Bookshelf";
-  private static final String USER_ID = "com.example.coo_bookshelf.USER_ID";
+  static final String USER_ID = "com.example.coo_bookshelf.USER_ID";
   private static BookshelfRepository repository;
   private ActivityMainBinding binding;
   // Variable to hold logged in user ID. -1 means no user is logged in.
@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
     if (loggedInUserId == -1) {
       Intent intent = LoginPageActivity.loginIntentFactory(getApplicationContext());
       startActivity(intent);
+      finish();
+      return;
     }
     welcomeScreen();
 
@@ -99,8 +101,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void userLogin() {
-    //TODO: Create login method
-    //TODO: Create a logout button
     loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
   }
 
@@ -158,18 +158,25 @@ public class MainActivity extends AppCompatActivity {
       userLiveData.removeObservers(this);
 
       //shouldn't happen but just in case
-      if (user != null) {
-
-        if(!user.isAdmin()){
-          binding.IsAdminLandingPageTextView.setText("");
-          binding.AdminButton.setVisibility(GONE);
-        }
-
-        String name = user.getFirstName();
-        String welcomeMessage = "Welcome " + name + "!";
-        binding.WelcomeTitleTextView.setText(welcomeMessage);
-
+      if (user == null) {
+        binding.WelcomeTitleTextView.setText("Welcome!");
+        return;
       }
+
+      // If user is not admin, hide admin button and text
+      if(!user.isAdmin()){
+        binding.IsAdminLandingPageTextView.setText("");
+        binding.AdminButton.setVisibility(GONE);
+      }
+
+      String name = user.getFirstName();
+      if (name != null && !name.trim().isEmpty()) {
+        binding.WelcomeTitleTextView.setText("Welcome, " + name + "!");
+      } else {
+        // No first name set, generic welcome
+        binding.WelcomeTitleTextView.setText("Welcome!");
+      }
+
     });
   }
 
