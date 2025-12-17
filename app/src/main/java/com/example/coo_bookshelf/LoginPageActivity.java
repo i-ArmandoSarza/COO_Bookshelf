@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityLoginPageBinding;
+import com.example.coo_bookshelf.validation.LoginValidator;
 
 public class LoginPageActivity extends AppCompatActivity {
 
@@ -62,6 +63,18 @@ public class LoginPageActivity extends AppCompatActivity {
         // Check if input is empty
         if (email.isEmpty() || passwordInput.isEmpty()) {
             toastMaker("Please enter both email and password.");
+            return;
+        }
+
+        // Email format check (LoginValidator)
+        if(!LoginValidator.isEmailValid(email)){
+            toastMaker("Please enter a valid email address.");
+            return;
+        }
+
+        // Password format check (LoginValidator)
+        if(!LoginValidator.isPasswordValid(passwordInput)) {
+            toastMaker("Password cannot be empty.");
             return;
         }
 
