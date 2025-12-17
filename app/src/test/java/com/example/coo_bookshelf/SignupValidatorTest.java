@@ -38,6 +38,11 @@ public class SignupValidatorTest {
         assertTrue(SignupValidator.isEmailValid("name.something@domain.com"));
     }
 
+    @Test
+    public void email_dotAtEnd_shouldBeInvalid() {
+        assertFalse(SignupValidator.isEmailValid("test@csumb."));
+    }
+
     // ---- Password Validation Test ----
     @SuppressWarnings("ConstantConditions")
     @Test
@@ -47,7 +52,7 @@ public class SignupValidatorTest {
 
     @Test
     public void password_tooShort_shouldBeInvalid() {
-        assertFalse(SignupValidator.isEmailValid("123"));
+        assertFalse(SignupValidator.isPasswordValid("123"));
     }
 
     @Test
