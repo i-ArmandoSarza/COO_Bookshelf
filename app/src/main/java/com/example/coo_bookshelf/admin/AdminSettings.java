@@ -24,7 +24,16 @@ public class AdminSettings extends AppCompatActivity {
     setContentView(binding.getRoot());
     repository = BookshelfRepository.getRepository(getApplication());
 
-    // When the "Remove User" text is clicked on the login screen
+    // When the "Add User" text is clicked on the admin screen
+    binding.AddUserButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = AdminCreateAccount.adminCreateAccountIntentFactory(getApplicationContext());
+        startActivity(intent);
+      }
+    });
+
+    // When the "Remove User" text is clicked on the admin screen
     binding.RemoveUserButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/main"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/backgroundsignup"
+  tools:context=".admin.AdminCreateAccount">
+
+
+  <!-- Logo -->
+  <Button
+    android:id="@+id/signUpButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:layout_marginBottom="24dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="#618CFC"
+    android:text="@string/sign_up"
+    android:textColor="#333333"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/adminCheckBox" />
+
+
+  <!-- Create Account Title -->
+
+  <!-- "Admin View" label (only visible for admins) -->
+  <CheckBox
+    android:id="@+id/adminCheckBox"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/admin_checkbox"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/lastNameEditText" />
+  <EditText
+    android:id="@+id/emailSignUpEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/email_hint"
+    android:inputType="textEmailAddress"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/IsAdminLandingPageTextView" />
+  <!-- Email input -->
+  <EditText
+    android:id="@+id/passwordSignUpEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/password_hint"
+    android:inputType="textPassword"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/emailSignUpEditText" />
+
+
+  <!-- Password input -->
+  <EditText
+    android:id="@+id/confirmPasswordEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/confirm_password_hint"
+    android:inputType="textPassword"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/passwordSignUpEditText" />
+
+  <!-- Confirm password input -->
+  <EditText
+    android:id="@+id/firstNameEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/first_name_text"
+    android:inputType="textPersonName"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText" />
+
+  <!-- first name text input -->
+  <EditText
+    android:id="@+id/lastNameEditText"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:hint="@string/last_name_text"
+    android:inputType="textPersonName"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/firstNameEditText" />
+
+  <!-- last name text input -->
+  <ImageView
+    android:id="@+id/LogoLoginImageView"
+    android:layout_width="96dp"
+    android:layout_height="96dp"
+    android:layout_marginTop="45dp"
+    android:contentDescription="@string/Login_Logo"
+    android:src="@drawable/bookshelflogo"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/SignUpTitleTextView"
+    android:textStyle="bold"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:text="@string/create_new_account"
+    android:textAlignment="center"
+    android:textSize="20sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/LogoLoginImageView" />
+
+
+  <!-- Sign up button -->
+  <TextView
+    android:id="@+id/IsAdminLandingPageTextView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:gravity="center"
+    android:text="@string/admin_view"
+    android:textSize="16sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/SignUpTitleTextView"
+    tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

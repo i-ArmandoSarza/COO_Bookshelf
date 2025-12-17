@@ -52,7 +52,7 @@ public class AdminRemoveUser extends AppCompatActivity {
     });
   }
 
-  //from https://www.geeksforgeeks.org/android/how-to-display-a-yes-no-dialogbox-in-android/
+  //adapted from https://www.geeksforgeeks.org/android/how-to-display-a-yes-no-dialogbox-in-android/
   private void showDialogBox(User user) {
     DialogInterface.OnClickListener dialogListener = new OnClickListener() {
       @Override
@@ -76,6 +76,7 @@ public class AdminRemoveUser extends AppCompatActivity {
 
   private void deleteUser(User user) {
     //TODO: Check if user is attempting to delete themselves
+    //TODO: Unit test
     bookshelfViewModel.removeUser(user);
     //do I update recycler view here?
   }
