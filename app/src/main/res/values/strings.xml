@@ -49,4 +49,6 @@
     <string name="admin_settings_text">Admin Settings</string>
     <string name="add_books_text">Add a Book</string>
     <string name="notification_text">Notifications</string>
+  <string name="add_books">Add Books</string>
+  <string name="no_books_in_your_library_please_add_books">No books in your library!</string>
 </resources>
