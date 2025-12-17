@@ -12,6 +12,7 @@ import com.example.coo_bookshelf.database.BookshelfDatabase;
 import com.example.coo_bookshelf.database.DAO.UserDAO;
 import com.example.coo_bookshelf.database.entities.User;
 import com.example.coo_bookshelf.databinding.ActivitySignUpBinding;
+import com.example.coo_bookshelf.validation.SignupValidator;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,21 +49,25 @@ public class SignUpActivity extends AppCompatActivity {
 
                 // Check if input is empty
                 if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(
-                            SignUpActivity.this,
-                            "Please fill in all fields.",
-                            Toast.LENGTH_SHORT
-                    ).show();
+                    toastMaker("Please fill in all fields.");
                     return;
                 }
 
-                // Check if passwords match
-                if (!password.equals(confirmPassword)) {
-                    Toast.makeText(
-                            SignUpActivity.this,
-                            "Passwords do not match.",
-                            Toast.LENGTH_SHORT
-                    ).show();
+                // Email validation via SignupValidator
+                if(!SignupValidator.isEmailValid(email)) {
+                    toastMaker("Please enter a valid email address.");
+                    return;
+                }
+
+                // Password validation via SignupValidator
+                if(!SignupValidator.isPasswordValid(password)){
+                    toastMaker("Password must be at least 4 characters.");
+                    return;
+                }
+
+                // Confirm passwords match
+                if(!password.equals(confirmPassword)) {
+                    toastMaker("Passwords do not match.");
                     return;
                 }
 
@@ -70,7 +75,21 @@ public class SignUpActivity extends AppCompatActivity {
                 executor.execute(new Runnable() {
                     @Override
                     public void run() {
-                        // Create the user and insert into database (this runs off the main thread)
+                        // Check if a user with this email already exists
+                        int existingUserId = userDAO.getUserIdByUserEmailSync(email);
+
+                        if (existingUserId > 0) {
+                            // Email already in use -> show Toast on main thread and stop
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    toastMaker("An account with this email already exists.");
+                                }
+                            });
+                            return; // Don't insert a duplicate user
+                        }
+
+                        // No existing user found -> proceed to insert new user
                         User user = new User(email, password);
                         userDAO.insert(user);
 
@@ -108,6 +127,10 @@ public class SignUpActivity extends AppCompatActivity {
     /** Helper method to open SignUpActivity from other activities */
     static Intent signUpIntentFactory(Context context) {
         return new Intent(context, SignUpActivity.class);
+    }
+
+    private void toastMaker(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

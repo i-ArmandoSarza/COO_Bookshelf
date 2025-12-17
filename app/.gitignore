@@ -64,6 +64,7 @@ render.experimental.xml
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/navEditor.xml
+.idea/deploymentTargetSelector.xml
 # Build folders inside modules
 /*/build/
 */out/

@@ -2,8 +2,12 @@ package com.example.coo_bookshelf;
 
 import static android.view.View.GONE;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -13,6 +17,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PackageManagerCompat;
+
 import com.example.coo_bookshelf.booksearch.MyBookSearchActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityMainBinding;
@@ -23,11 +31,14 @@ import com.example.coo_bookshelf.admin.AdminSettings;
 public class MainActivity extends AppCompatActivity {
 
   public static final String TAG = "CCO_Bookshelf";
-  private static final String USER_ID = "com.example.coo_bookshelf.USER_ID";
+  static final String USER_ID = "com.example.coo_bookshelf.USER_ID";
   private static BookshelfRepository repository;
   private ActivityMainBinding binding;
   // Variable to hold logged in user ID. -1 means no user is logged in.
   int loggedInUserId = -1;
+
+  // Notification
+  private static final int REQ_POST_NOTIFICATIONS = 100;
 
   // Method makes an intent to start MainActivity.
   static Intent mainActivityIntentFactory(Context context, int userId) {
@@ -56,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     if (loggedInUserId == -1) {
       Intent intent = LoginPageActivity.loginIntentFactory(getApplicationContext());
       startActivity(intent);
+      finish();
+      return;
     }
     welcomeScreen();
 
@@ -64,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
     if(getSupportActionBar() != null) {
       getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
+
+    // Notification
+    createNotificationChannel();
+    askNotificationPermission();
 
     // View my books onClick
     binding.MyBooksButton.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void userLogin() {
-    //TODO: Create login method
-    //TODO: Create a logout button
     loggedInUserId = getIntent().getIntExtra(USER_ID, -1);
   }
 
@@ -104,9 +119,9 @@ public class MainActivity extends AppCompatActivity {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
 
-  //============================================
-  //    Main Menu Options --> About |  Sign Out
-  //============================================
+  //=====================
+  //  Main Menu Options
+  //=====================
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -131,9 +146,21 @@ public class MainActivity extends AppCompatActivity {
       finish();
       return true;
     }
+
+    // Notification -> trigger notification
+    if(item.getItemId() == R.id.menu_notify) {
+      Intent intent = new Intent(this, ReminderReceiver.class);
+      intent.setAction("BOOKSHELF_REMINDER");
+      sendBroadcast(intent);
+      return true;
+    }
+
     return super.onOptionsItemSelected(item);
   }
 
+  //=====================
+  //    Welcome Screen
+  //=====================
   private void welcomeScreen() {
     //modified over from LoginPageActivity.verifyUser() method
     var userLiveData = repository.getUserByUserId(loggedInUserId);
@@ -142,19 +169,59 @@ public class MainActivity extends AppCompatActivity {
       userLiveData.removeObservers(this);
 
       //shouldn't happen but just in case
-      if (user != null) {
-
-        if(!user.isAdmin()){
-          binding.IsAdminLandingPageTextView.setText("");
-          binding.AdminButton.setVisibility(GONE);
-        }
-
-        String name = user.getFirstName();
-        String welcomeMessage = "Welcome " + name + "!";
-        binding.WelcomeTitleTextView.setText(welcomeMessage);
-
+      if (user == null) {
+        binding.WelcomeTitleTextView.setText("Welcome!");
+        return;
       }
+
+      // If user is not admin, hide admin button and text
+      if(!user.isAdmin()){
+        binding.IsAdminLandingPageTextView.setText("");
+        binding.AdminButton.setVisibility(GONE);
+      }
+
+      String name = user.getFirstName();
+      if (name != null && !name.trim().isEmpty()) {
+        binding.WelcomeTitleTextView.setText("Welcome, " + name + "!");
+      } else {
+        // No first name set, generic welcome
+        binding.WelcomeTitleTextView.setText("Welcome!");
+      }
+
     });
   }
+
+  //=====================
+  //   Notification
+  //=====================
+
+  // Create a notification channel
+  private void createNotificationChannel() {
+    NotificationChannel channel = new NotificationChannel(
+            "default",           // ID must match ReminderReceiver
+            "BookshelfChannel",     // Name shown in system settings
+            NotificationManager.IMPORTANCE_DEFAULT
+    );
+    // Description
+    channel.setDescription("Bookshelf Notifications");
+
+    NotificationManager manager = getSystemService(NotificationManager.class);
+    manager.createNotificationChannel(channel);   // Create the channel
+  }
+
+  // Ask user for notification permission
+  private void askNotificationPermission() {
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            != PackageManager.PERMISSION_GRANTED) {
+
+      // Request the permission if not granted
+      ActivityCompat.requestPermissions(
+              this,
+              new String[]{Manifest.permission.POST_NOTIFICATIONS},
+              REQ_POST_NOTIFICATIONS
+      );
+    }
+  }
+
 }
 

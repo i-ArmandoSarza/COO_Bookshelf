@@ -82,6 +82,14 @@ public class DocumentsResponse {
       sb.append(name).append(", ");
     }
 
+    // If ta coma is the last character in the string remove it.
+      if(sb.charAt(sb.length() - 2) == ','){
+      var startIndex = sb.length() - 2;
+      var endIndex = sb.length();
+
+       sb.delete(startIndex, endIndex);
+    }
+
     return sb.toString();
   }
 

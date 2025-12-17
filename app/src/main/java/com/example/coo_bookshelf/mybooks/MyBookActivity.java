@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityMyBooksBinding;
@@ -30,12 +31,20 @@ public class MyBookActivity  extends AppCompatActivity {
       return;
     }
 
-    MyBookListFragment myBookListFragment = new MyBookListFragment(userId);
+//    MyBookListFragment myBookListFragment = new MyBookListFragment(userId);
 
     if (savedInstanceState == null) {
-      getSupportFragmentManager().beginTransaction()
-          .replace(R.id.myBookFragmentContainerView, new MyBookListFragment(userId))
-          .commit();
+      repository.getBooksByUserId(userId).observe(this, books -> {
+        Fragment fragment;
+        if (books == null || books.isEmpty()) {
+          fragment = new NoBooksFragment(userId);
+        } else {
+          fragment = new MyBookListFragment(userId);
+        }
+        getSupportFragmentManager().beginTransaction()
+            .replace(R.id.myBookFragmentContainerView, fragment)
+            .commit();
+      });
     }
   }
 
