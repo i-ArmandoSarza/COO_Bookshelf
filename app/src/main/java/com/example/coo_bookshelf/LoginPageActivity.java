@@ -78,52 +78,26 @@ public class LoginPageActivity extends AppCompatActivity {
             // Stop observing after first result so we don't get repeated callbacks
             userLiveData.removeObservers(this);
 
-            if (user != null) {
-                // User found, check password
-                if (user.getPassword().equals(passwordInput)) {
-                    // Password matches, navigate to MainActivity
-                    Intent intent = MainActivity.mainActivityIntentFactory(
-                            LoginPageActivity.this,
-                            user.getUserId()
-                    );
-                    startActivity(intent);
-                    finish(); // Close LoginPageActivity
-                } else {
-                    // Password does not match
-                    toastMaker("Invalid password. Please try again.");
-                }
-            } else {
-                // No user found with this email
+            if (user == null) {
                 toastMaker("No account found with this email.");
+                return;
+            }
+            // User found, check password
+            if (user.getPassword().equals(passwordInput)) {
+                // Password matches, navigate to MainActivity
+                Intent intent = MainActivity.mainActivityIntentFactory(
+                        LoginPageActivity.this,
+                        user.getUserId()
+                );
+                startActivity(intent);
+                finish(); // Close LoginPageActivity
+            } else {
+                // Password does not match
+                toastMaker("Invalid password. Please try again.");
             }
         });
     }
 
-    // TESTER METHOD
-    /** private void verifyUser(){
-      // This has not been wired up to check the loginActivity inputs.
-      // This is for testing only to verify that the we can retrieve a user from the database.
-      var email = "monty@csumb.edu";
-      var userObserver = repository.getUserByUserEmail(email);
-      userObserver.observe(this, user -> {
-        if (user != null) {
-          String password = user.getPassword();
-          var testMsg =
-              String.format(
-                  "onCreate: Testing DB access. Retrieved monty record.%nUser first name: '%s' and email is '%s'"
-                  , user.getFirstName()
-                  , user.getEmail());
-          var shortMsg = String.format("Name: '%s' and email is '%s'", user.getFirstName(), user.getEmail());
-          toastMaker(shortMsg);
-          Log.i(MainActivity.TAG, testMsg);
-
-        } else {
-          Log.i(MainActivity.TAG, "onCreate: Failed to get user");
-          toastMaker(String.format("User %s is not a valid username", email));
-        }
-      });
-
-    } */
     private void toastMaker(String message) {
       Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

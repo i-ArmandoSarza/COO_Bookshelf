@@ -26,7 +26,7 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
         repository = BookshelfRepository.getRepository(getApplication());
 
         // Get USER_ID passed from SignUpActivity
-        userId = getIntent().getIntExtra("USER_ID", -1);
+        userId = getIntent().getIntExtra(MainActivity.USER_ID, -1);
         if(userId == -1) {
             toastMaker("Error: no user ID.");
             finish();
@@ -40,7 +40,7 @@ public class AdditionalUserInfoActivity extends AppCompatActivity {
 
     public static Intent additionalInfoIntentFactory(Context context, int userId) {
         Intent intent = new Intent(context, AdditionalUserInfoActivity.class);
-        intent.putExtra("USER_ID", userId);
+        intent.putExtra(MainActivity.USER_ID, userId);
         return intent;
     }
 
