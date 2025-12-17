@@ -91,23 +91,22 @@ public class LoginPageActivity extends AppCompatActivity {
             // Stop observing after first result so we don't get repeated callbacks
             userLiveData.removeObservers(this);
 
-            if (user != null) {
-                // User found, check password
-                if (user.getPassword().equals(passwordInput)) {
-                    // Password matches, navigate to MainActivity
-                    Intent intent = MainActivity.mainActivityIntentFactory(
-                            LoginPageActivity.this,
-                            user.getUserId()
-                    );
-                    startActivity(intent);
-                    finish(); // Close LoginPageActivity
-                } else {
-                    // Password does not match
-                    toastMaker("Invalid password. Please try again.");
-                }
-            } else {
-                // No user found with this email
+            if (user == null) {
                 toastMaker("No account found with this email.");
+                return;
+            }
+            // User found, check password
+            if (user.getPassword().equals(passwordInput)) {
+                // Password matches, navigate to MainActivity
+                Intent intent = MainActivity.mainActivityIntentFactory(
+                        LoginPageActivity.this,
+                        user.getUserId()
+                );
+                startActivity(intent);
+                finish(); // Close LoginPageActivity
+            } else {
+                // Password does not match
+                toastMaker("Invalid password. Please try again.");
             }
         });
     }
