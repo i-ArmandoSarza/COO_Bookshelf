@@ -5,14 +5,22 @@ public class SignupValidator {
     // Check basic email format
     public static boolean isEmailValid(String email) {
         if(email == null || email.trim().isEmpty()) return false;
-        if(!email.contains("@")) return false;
-        if(!email.contains(".")) return false;
 
-        // "." must appear after "@"
+        email = email.trim();
+
         int atIndex = email.indexOf("@");
         int dotIndex = email.lastIndexOf(".");
 
-        return dotIndex > atIndex;
+        // '@' must exist and not be the first char
+        if(atIndex <= 0) return false;
+
+        // '.' must exist after '@'
+        if(dotIndex <= atIndex) return false;
+
+        // '.' must not be the last char
+        if(dotIndex == email.length()-1) return false;
+
+        return true;
     }
 
     // Password must be at least 4 characters
