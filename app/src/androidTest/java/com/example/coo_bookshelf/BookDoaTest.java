@@ -121,4 +121,56 @@ public class BookDoaTest {
     assertEquals(0, deletedBooks.size());
   }
 
+    /**
+     * Tests updating a book entity changes the title in the database.
+     *  - Inserts a user and a book linked to that user.
+     *  - Reads book from database and updates title field.
+     *  - Calls BookDAO update method.
+     *  - Reads book again and verifies new title is stored.
+     */
+  @Test
+    public void updateBook_updatesTitleForExistingBook() throws InterruptedException {
+      // setup monty user
+      User userMonty = new User ("montyUpdate@csumb.edu", "admin1");
+      userMonty.setAdmin(true);
+      userMonty.setFirstName("Monty");
+      userMonty.setLastName("Rey");
+      userDAO.insert(userMonty);
+
+      // Get Monty user ID
+      int montyUserId = userDAO.getUserIdByUserEmailSync("montyUpdate@csumb.edu");
+        assertTrue("Monty user id should be > 0", montyUserId > 0);
+
+      // Add a book to monty's account.
+      Book montyBook = new Book(
+              montyUserId,
+              "Red Rising",
+                "Pierce Brown",
+                "OL7621609A",
+                    "OL17076473W"
+        );
+      montyBook.setFirstPublishedYear("October 14, 2025");
+      bookDAO.insert(montyBook);
+
+      // Read the book back
+      LiveData<List<Book>> booksObserver = bookDAO.getBooksByUserId(montyUserId);
+      List<Book> books = LiveDataTestUtil.getOrAwaitValue(booksObserver);
+
+      assertEquals(1, books.size());
+      Book book = books.get(0);
+      assertEquals("Red Rising", book.getTitle());
+
+      // Update the title
+      book.setTitle("Red Rising (Updated)");
+      bookDAO.update(book);
+
+      // Read again and verify the update
+      LiveData<List<Book>> updatedObserver = bookDAO.getBooksByUserId(montyUserId);
+      List<Book> updatedBooks = LiveDataTestUtil.getOrAwaitValue(updatedObserver);
+      Book updatedBook = updatedBooks.get(0);
+
+      assertEquals("Book title should be updated",
+              "Red Rising (Updated)",
+              updatedBook.getTitle());
+  }
 }

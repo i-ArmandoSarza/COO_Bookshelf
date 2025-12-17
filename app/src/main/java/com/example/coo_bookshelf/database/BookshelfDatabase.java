@@ -10,6 +10,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.coo_bookshelf.MainActivity;
 import com.example.coo_bookshelf.database.DAO.BookDAO;
 import com.example.coo_bookshelf.database.DAO.UserDAO;
+import com.example.coo_bookshelf.database.DAO.CategoryDAO;
+import com.example.coo_bookshelf.database.DAO.BookCategoryDAO;
 import com.example.coo_bookshelf.database.entities.Book;
 import com.example.coo_bookshelf.database.entities.BookCategory;
 import com.example.coo_bookshelf.database.entities.Category;
@@ -205,5 +207,9 @@ public abstract class BookshelfDatabase extends RoomDatabase {
   public abstract UserDAO userDAO();
 
   public abstract BookDAO bookDAO();
+
+  public abstract CategoryDAO categoryDAO();
+
+  public abstract BookCategoryDAO bookCategoryDAO();
 
 }
