@@ -6,7 +6,16 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/backgroundlogin"
-  tools:context=".AdminSettings">
+  tools:context=".admin.AdminSettings">
+
+  <!-- Top Toolbar with Back Button -->
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="0dp"
+      android:layout_height="?attr/actionBarSize"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
 
   <Button
     android:id="@+id/AddUserButton"
@@ -17,7 +26,7 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="#6F8FAF"
-    android:text="Add Users"
+    android:text="@string/add_users_button"
     android:textSize="20sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +46,6 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/AddUserButton" />
-  />
   <!-- Yes I drew this by hand lol ~Rose) -->
   <ImageView
     android:id="@+id/AndroidLogoImageView"
@@ -55,10 +63,10 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="55dp"
     android:gravity="center"
-    android:text="Admin View"
+    android:text="@string/admin_view_text"
     android:textSize="24sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,14 @@ public class AdminSettings extends AppCompatActivity {
     setContentView(binding.getRoot());
     repository = BookshelfRepository.getRepository(getApplication());
 
+    // Setup Toolbar and enable Back Button
+    setSupportActionBar(binding.toolbar);
+    if(getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayShowTitleEnabled(false);
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+      getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     // When the "Add User" text is clicked on the admin screen
     binding.AddUserButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -42,6 +50,15 @@ public class AdminSettings extends AppCompatActivity {
         startActivity(intent);
       }
     });
+  }
+
+  // Back Button
+
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    finish();
+    return true;
   }
 
   // setup intent for AdminSettings
