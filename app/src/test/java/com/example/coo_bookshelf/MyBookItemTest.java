@@ -196,4 +196,73 @@ public class MyBookItemTest {
     bookItem.setDescription(longDescription);
     assertEquals(longDescription, bookItem.getDescription());
   }
+  //testing worksid
+  @Test
+  public void testGetWorksId_initiallyNull() {
+    assertNull(bookItem.getWorksId());
+  }
+  @Test
+  public void testSetWorksId_updatesValue() {
+    String worksId = "OL123456W";
+    bookItem.setWorksId(worksId);
+    assertEquals(worksId, bookItem.getWorksId());
+  }
+  @Test
+  public void testSetWorksId_withNull() {
+    bookItem.setWorksId("OL123456W");
+    bookItem.setWorksId(null);
+    assertNull(bookItem.getWorksId());
+  }
+  // AuthorKey Tests
+  @Test
+  public void testGetAuthorKey_initiallyNull() {
+    assertNull(bookItem.getAuthorKey());
+  }
+  @Test
+  public void testSetAuthorKey_updatesValue() {
+    String authorKey = "OL26783A";
+    bookItem.setAuthorKey(authorKey);
+    assertEquals(authorKey, bookItem.getAuthorKey());
+  }
+  @Test
+  public void testSetAuthorKey_withNull() {
+    bookItem.setAuthorKey("OL26783A");
+    bookItem.setAuthorKey(null);
+    assertNull(bookItem.getAuthorKey());
+  }
+  // Edge Cases and Integration Tests
+  @Test
+  public void testMultipleSettersAndGetters() {
+    bookItem.setTitle("New Title");
+    bookItem.setAuthor("New Author");
+    bookItem.setIsbn("1234567890");
+    assertEquals("New Title", bookItem.getTitle());
+    assertEquals("New Author", bookItem.getAuthor());
+    assertEquals("1234567890", bookItem.getIsbn());
+  }
+  @Test
+  public void testSetTitle_withSpecialCharacters() {
+    String specialTitle = "Book: A Tale of \"Quotes\" & <Tags>";
+    bookItem.setTitle(specialTitle);
+    assertEquals(specialTitle, bookItem.getTitle());
+  }
+  @Test
+  public void testAllFieldsCanBeSetIndependently() {
+    bookItem.setTitle("Title1");
+    bookItem.setImageUrl("url1");
+    bookItem.setAuthor("Author1");
+    bookItem.setIsbn("isbn1");
+    bookItem.setPublishDate("date1");
+    bookItem.setDescription("desc1");
+    bookItem.setWorksId("works1");
+    bookItem.setAuthorKey("key1");
+    assertEquals("Title1", bookItem.getTitle());
+    assertEquals("url1", bookItem.getImageUrl());
+    assertEquals("Author1", bookItem.getAuthor());
+    assertEquals("isbn1", bookItem.getIsbn());
+    assertEquals("date1", bookItem.getPublishDate());
+    assertEquals("desc1", bookItem.getDescription());
+    assertEquals("works1", bookItem.getWorksId());
+    assertEquals("key1", bookItem.getAuthorKey());
+  }
 }

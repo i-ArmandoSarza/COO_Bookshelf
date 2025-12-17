@@ -18,7 +18,7 @@ public class BookshelfViewAdapter extends ListAdapter<User, BookshelfViewHolder>
 
   public OnUserClickListener listener;
 
-
+  //Adapted from gym log recycler video
   public BookshelfViewAdapter(@NonNull DiffUtil.ItemCallback<User> diffCallBack,
       OnUserClickListener listener) {
     super(diffCallBack);

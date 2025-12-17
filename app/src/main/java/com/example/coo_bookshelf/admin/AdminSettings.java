@@ -15,7 +15,6 @@ public class AdminSettings extends AppCompatActivity {
   private static BookshelfRepository repository;
   private ActivityAdminSettingsBinding binding;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

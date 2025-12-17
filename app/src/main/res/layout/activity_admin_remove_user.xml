@@ -6,9 +6,10 @@
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:background="@drawable/backgroundlogin"
-  tools:context=".AdminRemoveUser">
+  tools:context="admin.AdminRemoveUser">
 
-
+  <!-- fairly certain this doesn't do anything
+  since I just overwrite the activity from my_book_item_card.xml-->
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/AdminUserDisplayRecyclerView"
     android:layout_width="0dp"

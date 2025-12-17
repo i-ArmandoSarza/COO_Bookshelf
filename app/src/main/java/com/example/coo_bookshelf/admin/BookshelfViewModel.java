@@ -8,16 +8,17 @@ import com.example.coo_bookshelf.database.entities.User;
 import java.util.List;
 
 /**
-* Name: Rose Arias-Aceves
-* Date: 12/13/25
-* Explanation: What is this class?
-*/
+ * Name: Rose Arias-Aceves Date: 12/13/25
+ * Explanation: This class grabs all userdata from the DB, it
+ * requires live data to work
+ */
 public class BookshelfViewModel extends AndroidViewModel {
+
   private static BookshelfRepository repository;
 
   private final LiveData<List<User>> allUsers;
 
-  public BookshelfViewModel(Application application){
+  public BookshelfViewModel(Application application) {
     super(application);
     repository = BookshelfRepository.getRepository(application);
     allUsers = repository.getAllUsersLiveData();
@@ -27,7 +28,7 @@ public class BookshelfViewModel extends AndroidViewModel {
     return allUsers;
   }
 
-  public void removeUser(User user){
+  public void removeUser(User user) {
     repository.delete(user);
   }
 }

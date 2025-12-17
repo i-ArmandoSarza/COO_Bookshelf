@@ -24,7 +24,6 @@ public class AdminRemoveUser extends AppCompatActivity {
   private static BookshelfRepository repository;
   private BookshelfViewModel bookshelfViewModel;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -33,12 +32,13 @@ public class AdminRemoveUser extends AppCompatActivity {
 
     bookshelfViewModel = new ViewModelProvider(this).get(BookshelfViewModel.class);
 
+    //setting up recycler view
+    //Mostly adapted from professors recycler view video, and some of
+    //Steve's book recycle view.
     RecyclerView recyclerView = binding.AdminUserDisplayRecyclerView;
-    final BookshelfViewAdapter adapter = new BookshelfViewAdapter(new BookshelftDiff(), user -> {
+    final BookshelfViewAdapter adapter = new BookshelfViewAdapter(
+        new BookshelftDiff(), user -> {
       showDialogBox(user);
-
-      //then update the recycler view?
-      //seems like its not needed
     });
 
     recyclerView.setAdapter(adapter);
@@ -48,7 +48,6 @@ public class AdminRemoveUser extends AppCompatActivity {
 
     bookshelfViewModel.getAllUsers().observe(this, User -> {
       adapter.submitList(User);
-
     });
   }
 
@@ -78,7 +77,6 @@ public class AdminRemoveUser extends AppCompatActivity {
     //TODO: Check if user is attempting to delete themselves
     //TODO: Unit test
     bookshelfViewModel.removeUser(user);
-    //do I update recycler view here?
   }
 
   static Intent AdminRemoveUserIntentFactory(Context context) {
@@ -89,5 +87,4 @@ public class AdminRemoveUser extends AppCompatActivity {
   private void toastMaker(String message) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
   }
-
 }
