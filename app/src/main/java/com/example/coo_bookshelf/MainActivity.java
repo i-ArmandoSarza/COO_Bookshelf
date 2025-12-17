@@ -25,6 +25,7 @@ import com.example.coo_bookshelf.booksearch.MyBookSearchActivity;
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityMainBinding;
 import com.example.coo_bookshelf.mybooks.MyBookActivity;
+import com.example.coo_bookshelf.admin.AdminSettings;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //TODO: If doing recycle view, refactor
+    //TODO: If doing recycle view, refactor, might just have to make a work around
     /*Not the best source but it does do it how this was previously set up.
     https://www.tutorialspoint.com/how-can-i-remove-a-button-or-make-it-invisible-in-android
     p.s. I think doing it this way would fix the database not populating until you make a call.
@@ -86,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         Intent intent = MyBookActivity.MyBookActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        startActivity(intent);
+      }
+    });
+
+    // When the "Admin Settings" button is clicked on the login screen
+    binding.AdminButton.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        // Make a plan to go to the SignUpActivity
+        Intent intent = AdminSettings.AdminSettingsIntentFactory(getApplicationContext());
         startActivity(intent);
       }
     });
