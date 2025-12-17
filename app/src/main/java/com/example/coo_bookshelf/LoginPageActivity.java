@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.databinding.ActivityLoginPageBinding;
+import com.example.coo_bookshelf.validation.LoginValidator;
 
 public class LoginPageActivity extends AppCompatActivity {
 
@@ -65,6 +66,18 @@ public class LoginPageActivity extends AppCompatActivity {
             return;
         }
 
+        // Email format check (LoginValidator)
+        if(!LoginValidator.isEmailValid(email)){
+            toastMaker("Please enter a valid email address.");
+            return;
+        }
+
+        // Password format check (LoginValidator)
+        if(!LoginValidator.isPasswordValid(passwordInput)) {
+            toastMaker("Password cannot be empty.");
+            return;
+        }
+
         // Safety check incase repository failed to initialize
         if (repository == null) {
             toastMaker("Error connecting to database. Try again.");
@@ -99,31 +112,6 @@ public class LoginPageActivity extends AppCompatActivity {
         });
     }
 
-    // TESTER METHOD
-    /** private void verifyUser(){
-      // This has not been wired up to check the loginActivity inputs.
-      // This is for testing only to verify that the we can retrieve a user from the database.
-      var email = "monty@csumb.edu";
-      var userObserver = repository.getUserByUserEmail(email);
-      userObserver.observe(this, user -> {
-        if (user != null) {
-          String password = user.getPassword();
-          var testMsg =
-              String.format(
-                  "onCreate: Testing DB access. Retrieved monty record.%nUser first name: '%s' and email is '%s'"
-                  , user.getFirstName()
-                  , user.getEmail());
-          var shortMsg = String.format("Name: '%s' and email is '%s'", user.getFirstName(), user.getEmail());
-          toastMaker(shortMsg);
-          Log.i(MainActivity.TAG, testMsg);
-
-        } else {
-          Log.i(MainActivity.TAG, "onCreate: Failed to get user");
-          toastMaker(String.format("User %s is not a valid username", email));
-        }
-      });
-
-    } */
     private void toastMaker(String message) {
       Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
