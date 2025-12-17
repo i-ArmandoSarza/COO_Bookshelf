@@ -129,6 +129,7 @@ public class AdminCreateAccount extends AppCompatActivity {
   }
 
 
+  // Toolbar - Back button
   @Override
   public boolean onSupportNavigateUp() {
     finish();   // go back to previous Activity

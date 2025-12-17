@@ -31,6 +31,14 @@ public class AdminRemoveUser extends AppCompatActivity {
     binding = ActivityAdminRemoveUserBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    // Setup Toolbar: back button
+    setSupportActionBar(binding.toolbar);
+    if(getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayShowTitleEnabled(false);    // hide title text
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);      // show back arrow
+      getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     bookshelfViewModel = new ViewModelProvider(this).get(BookshelfViewModel.class);
 
     RecyclerView recyclerView = binding.AdminUserDisplayRecyclerView;
@@ -79,6 +87,13 @@ public class AdminRemoveUser extends AppCompatActivity {
     //TODO: Unit test
     bookshelfViewModel.removeUser(user);
     //do I update recycler view here?
+  }
+
+  // Toolbar - Back button
+  @Override
+  public boolean onSupportNavigateUp() {
+    finish();   // go back to previous Activity
+    return true;
   }
 
   static Intent AdminRemoveUserIntentFactory(Context context) {
