@@ -8,6 +8,14 @@
   android:background="@drawable/backgroundsignup"
   tools:context=".admin.AdminCreateAccount">
 
+  <!-- Top Toolbar with Back Button -->
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="0dp"
+      android:layout_height="?attr/actionBarSize"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
 
   <!-- Logo -->
   <Button
@@ -127,7 +135,7 @@
     android:src="@drawable/bookshelflogo"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
   <TextView
     android:id="@+id/SignUpTitleTextView"
