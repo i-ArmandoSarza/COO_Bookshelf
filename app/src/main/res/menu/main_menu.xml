@@ -13,4 +13,11 @@
         android:id="@+id/menu_signout"
         android:title="@string/sign_out_text"
         app:showAsAction="never" />
+
+    <!-- Notification -->
+    <item
+        android:id="@+id/menu_notify"
+        android:title="@string/notification_text"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>
