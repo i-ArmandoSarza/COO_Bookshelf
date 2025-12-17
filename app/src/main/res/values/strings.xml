@@ -52,4 +52,6 @@
     <string name="password_hint">Password</string>
     <string name="confirm_password_hint">Confirm password</string>
     <string name="notification_text">Notifications</string>
+  <string name="add_books">Add Books</string>
+  <string name="no_books_in_your_library_please_add_books">No books in your library!</string>
 </resources>
