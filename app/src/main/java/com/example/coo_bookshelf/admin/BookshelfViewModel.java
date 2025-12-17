@@ -26,4 +26,8 @@ public class BookshelfViewModel extends AndroidViewModel {
   public LiveData<List<User>> getAllUsers() {
     return allUsers;
   }
+
+  public void removeUser(User user){
+    repository.delete(user);
+  }
 }
