@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity {
       } else if (count == 1) {
         binding.LibrarySizeTextView.setText("You currently have 1 book in your bookshelf!");
       }else{
-        binding.LibrarySizeTextView.setText("You currently have " + count + "books in your bookshelf!");
+        binding.LibrarySizeTextView.setText("You currently have " + count + " books in your bookshelf!");
       }
     });
   }
