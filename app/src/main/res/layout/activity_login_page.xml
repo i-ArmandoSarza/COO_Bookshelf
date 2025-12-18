@@ -30,6 +30,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="@string/Title_Login_Page"
+        android:textStyle="bold"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
