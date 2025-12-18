@@ -44,7 +44,6 @@ public class AdminSettings extends AppCompatActivity {
     binding.RemoveUserButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        //TODO: enter current user ID
         Intent intent = AdminRemoveUser.AdminRemoveUserIntentFactory(getApplicationContext());
         startActivity(intent);
       }
@@ -52,8 +51,6 @@ public class AdminSettings extends AppCompatActivity {
   }
 
   // Back Button
-
-
   @Override
   public boolean onSupportNavigateUp() {
     finish();

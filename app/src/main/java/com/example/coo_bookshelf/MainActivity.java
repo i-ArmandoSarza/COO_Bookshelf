@@ -51,12 +51,6 @@ public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    //TODO: If doing recycle view, refactor, might just have to make a work around
-    /*Not the best source but it does do it how this was previously set up.
-    https://www.tutorialspoint.com/how-can-i-remove-a-button-or-make-it-invisible-in-android
-    p.s. I think doing it this way would fix the database not populating until you make a call.
-    since it only became an issue after doing it this way.
-    */
     binding = ActivityMainBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
     repository = BookshelfRepository.getRepository(getApplication());
@@ -74,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Menu Button
     setSupportActionBar(binding.toolbar);
-    if(getSupportActionBar() != null) {
+    if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
@@ -86,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
     binding.MyBooksButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = MyBookActivity.MyBookActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        Intent intent = MyBookActivity.MyBookActivityIntentFactory(getApplicationContext(),
+            loggedInUserId);
         startActivity(intent);
       }
     });
@@ -105,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
     binding.SearchBooksButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent intent = MyBookSearchActivity.MyBookSearchActivityIntentFactory(getApplicationContext(), loggedInUserId);
+        Intent intent = MyBookSearchActivity.MyBookSearchActivityIntentFactory(
+            getApplicationContext(), loggedInUserId);
         startActivity(intent);
       }
     });
@@ -133,14 +129,14 @@ public class MainActivity extends AppCompatActivity {
     int id = item.getItemId();
 
     // About Text -> About page
-    if(item.getItemId() == R.id.menu_about) {
+    if (item.getItemId() == R.id.menu_about) {
       Intent intent = new Intent(this, AboutActivity.class);
       startActivity(intent);
       return true;
     }
 
     // Sign Out Text --> Login page
-    if(item.getItemId() == R.id.menu_signout) {
+    if (item.getItemId() == R.id.menu_signout) {
       // Go back to login screen
       startActivity(LoginPageActivity.loginIntentFactory(this));
       finish();
@@ -148,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Notification -> trigger notification
-    if(item.getItemId() == R.id.menu_notify) {
+    if (item.getItemId() == R.id.menu_notify) {
       Intent intent = new Intent(this, ReminderReceiver.class);
       intent.setAction("BOOKSHELF_REMINDER");
       sendBroadcast(intent);
@@ -175,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
       }
 
       // If user is not admin, hide admin button and text
-      if(!user.isAdmin()){
+      if (!user.isAdmin()) {
         binding.IsAdminLandingPageTextView.setText("");
         binding.AdminButton.setVisibility(GONE);
       }
@@ -189,6 +185,19 @@ public class MainActivity extends AppCompatActivity {
       }
 
     });
+
+    //setting number of books welcome
+    var bookLiveData = repository.getBookCountByUserId(loggedInUserId);
+    bookLiveData.observe(this, count -> {
+
+      if (count == null || count == 0) {
+        binding.LibrarySizeTextView.setText("Search for a book to start adding!");
+      } else if (count == 1) {
+        binding.LibrarySizeTextView.setText("You currently have 1 book in your bookshelf!");
+      }else{
+        binding.LibrarySizeTextView.setText("You currently have " + count + "books in your bookshelf!");
+      }
+    });
   }
 
   //=====================
@@ -198,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
   // Create a notification channel
   private void createNotificationChannel() {
     NotificationChannel channel = new NotificationChannel(
-            "default",           // ID must match ReminderReceiver
-            "BookshelfChannel",     // Name shown in system settings
-            NotificationManager.IMPORTANCE_DEFAULT
+        "default",           // ID must match ReminderReceiver
+        "BookshelfChannel",     // Name shown in system settings
+        NotificationManager.IMPORTANCE_DEFAULT
     );
     // Description
     channel.setDescription("Bookshelf Notifications");
@@ -212,13 +221,13 @@ public class MainActivity extends AppCompatActivity {
   // Ask user for notification permission
   private void askNotificationPermission() {
     if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
-            != PackageManager.PERMISSION_GRANTED) {
+        != PackageManager.PERMISSION_GRANTED) {
 
       // Request the permission if not granted
       ActivityCompat.requestPermissions(
-              this,
-              new String[]{Manifest.permission.POST_NOTIFICATIONS},
-              REQ_POST_NOTIFICATIONS
+          this,
+          new String[]{Manifest.permission.POST_NOTIFICATIONS},
+          REQ_POST_NOTIFICATIONS
       );
     }
   }

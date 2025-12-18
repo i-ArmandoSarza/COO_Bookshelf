@@ -7,11 +7,6 @@ import com.example.coo_bookshelf.database.BookshelfRepository;
 import com.example.coo_bookshelf.database.entities.User;
 import java.util.List;
 
-/**
- * Name: Rose Arias-Aceves Date: 12/13/25
- * Explanation: This class grabs all userdata from the DB, it
- * requires live data to work
- */
 public class BookshelfViewModel extends AndroidViewModel {
 
   private static BookshelfRepository repository;

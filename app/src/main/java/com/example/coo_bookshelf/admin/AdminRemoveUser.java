@@ -82,8 +82,6 @@ public class AdminRemoveUser extends AppCompatActivity {
   }
 
   private void deleteUser(User user) {
-    //TODO: Check if user is attempting to delete themselves
-    //TODO: Unit test
     bookshelfViewModel.removeUser(user);
   }
 

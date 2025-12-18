@@ -140,6 +140,10 @@ public class BookshelfRepository {
     return bookDAO.getBooksByUserId(userId);
   }
 
+  public LiveData<Integer>getBookCountByUserId(int userId){
+    return bookDAO.getBookCountByUserId(userId);
+  }
+
   public LiveData<Book> getBookById(int bookId) {
     return bookDAO.getBookById(bookId);
   }

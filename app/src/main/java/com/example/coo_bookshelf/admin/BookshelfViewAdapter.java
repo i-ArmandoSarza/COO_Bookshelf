@@ -6,9 +6,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import com.example.coo_bookshelf.database.entities.User;
 
-/**
- * Name: Rose Arias-Aceves Date: 12/13/25 Explanation: What is this class?
- */
 public class BookshelfViewAdapter extends ListAdapter<User, BookshelfViewHolder> {
 
   public interface OnUserClickListener {
