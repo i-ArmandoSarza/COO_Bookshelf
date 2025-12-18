@@ -28,6 +28,9 @@ public interface BookDAO {
   @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE UserId = :userId")
   LiveData<List<Book>> getBooksByUserId(int userId);
 
+  @Query("SELECT COUNT(*) FROM " + DbConfig.BOOK_TABLE + " WHERE UserId = :userId")
+  LiveData<Integer> getBookCountByUserId(int userId);
+
   @Query("SELECT * FROM " + DbConfig.BOOK_TABLE + " WHERE BookId = :bookId")
   LiveData<Book> getBookById(int bookId);
 

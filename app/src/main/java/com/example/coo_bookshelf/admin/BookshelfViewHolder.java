@@ -8,21 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.coo_bookshelf.R;
 import com.example.coo_bookshelf.database.entities.User;
 
-/**
- * Name: Rose Arias-Aceves Date: 12/13/25 Explanation: What is this class?
- */
+
 public class BookshelfViewHolder extends RecyclerView.ViewHolder {
 
+  //This class is adapted from Steve's RecyclerView
   TextView textItem;
 
   private BookshelfViewHolder(View itemView) {
     super(itemView);
     textItem = itemView.findViewById(R.id.textItem);
-
   }
 
   public void bind(User user, BookshelfViewAdapter.OnUserClickListener listener) {
     textItem.setText(user.getFirstName());
+    //The 'card' itself is a itemview, I dont actually put any picture there.
     itemView.setOnClickListener(v -> {
       if (listener != null) {
         listener.onUserClick(user);
@@ -31,10 +30,9 @@ public class BookshelfViewHolder extends RecyclerView.ViewHolder {
   }
 
   static BookshelfViewHolder create(ViewGroup parent) {
+    //It inflates the same Activity used in the search book section.
     View view = LayoutInflater.from(parent.getContext()).
         inflate(R.layout.my_book_item_card, parent, false);
     return new BookshelfViewHolder(view);
   }
-
-
 }

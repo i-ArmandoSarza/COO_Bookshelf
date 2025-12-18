@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@drawable/backgroundlogin"
-  tools:context=".admin.AdminSettings">
+  tools:context="admin.AdminSettings">
 
   <!-- Top Toolbar with Back Button -->
   <androidx.appcompat.widget.Toolbar

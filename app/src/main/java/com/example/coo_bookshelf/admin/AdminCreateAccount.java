@@ -20,7 +20,6 @@ import java.util.concurrent.Executors;
 
 public class AdminCreateAccount extends AppCompatActivity {
 
-
   private ActivityAdminCreateAccountBinding binding;
 
   // DATABASE INFO
@@ -63,25 +62,25 @@ public class AdminCreateAccount extends AppCompatActivity {
         }
 
         // Email validation via SignupValidator
-        if(!SignupValidator.isEmailValid(email)) {
+        if (!SignupValidator.isEmailValid(email)) {
           toastMaker("Please enter a valid email address.");
           return;
         }
 
         // Password validation via SignupValidator
-        if(!SignupValidator.isPasswordValid(password)){
+        if (!SignupValidator.isPasswordValid(password)) {
           toastMaker("Password must be at least 4 characters.");
           return;
         }
 
         // Confirm passwords match
-        if(!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
           toastMaker("Passwords do not match.");
           return;
         }
 
         //if first name is empty or not
-        if(firstName.isEmpty() || lastName.isEmpty()) {
+        if (firstName.isEmpty() || lastName.isEmpty()) {
           toastMaker("Please enter both first and last name.");
           return;
         }
@@ -111,8 +110,7 @@ public class AdminCreateAccount extends AppCompatActivity {
             user.setLastName(lastName);
             userDAO.insert(user);
 
-
-            // Switch back to main thread to show Toast and navigate
+            // Switch back to main thread to show Toast
             runOnUiThread(new Runnable() {
               @Override
               public void run() {
@@ -124,10 +122,7 @@ public class AdminCreateAccount extends AppCompatActivity {
         });
       }
     });
-
-
   }
-
 
   // Toolbar - Back button
   @Override

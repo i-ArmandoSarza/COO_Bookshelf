@@ -58,6 +58,7 @@
   <string name="remove_users">Remove Users</string>
   <string name="create_new_account">Create New Account</string>
   <string name="admin_checkbox">Admin</string>
-    <string name="add_users_button">Add Users</string>
+  <string name="add_users_button">Add Users</string>
   <string name="admin_view_text">Admin View</string>
+  <string name="hello_admin">Hello admin</string>
 </resources>
