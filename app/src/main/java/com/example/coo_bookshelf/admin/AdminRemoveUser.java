@@ -30,6 +30,14 @@ public class AdminRemoveUser extends AppCompatActivity {
     binding = ActivityAdminRemoveUserBinding.inflate(getLayoutInflater());
     setContentView(binding.getRoot());
 
+    // Setup Toolbar: back button
+    setSupportActionBar(binding.toolbar);
+    if(getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayShowTitleEnabled(false);    // hide title text
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);      // show back arrow
+      getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
     bookshelfViewModel = new ViewModelProvider(this).get(BookshelfViewModel.class);
 
     //setting up recycler view
@@ -77,6 +85,13 @@ public class AdminRemoveUser extends AppCompatActivity {
     //TODO: Check if user is attempting to delete themselves
     //TODO: Unit test
     bookshelfViewModel.removeUser(user);
+  }
+
+  // Toolbar - Back button
+  @Override
+  public boolean onSupportNavigateUp() {
+    finish();   // go back to previous Activity
+    return true;
   }
 
   static Intent AdminRemoveUserIntentFactory(Context context) {

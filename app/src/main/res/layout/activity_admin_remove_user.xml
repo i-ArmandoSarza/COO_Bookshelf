@@ -8,8 +8,15 @@
   android:background="@drawable/backgroundlogin"
   tools:context="admin.AdminRemoveUser">
 
-  <!-- fairly certain this doesn't do anything
-  since I just overwrite the activity from my_book_item_card.xml-->
+  <!-- Top Toolbar with Back Button -->
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="0dp"
+      android:layout_height="?attr/actionBarSize"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent" />
+
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/AdminUserDisplayRecyclerView"
     android:layout_width="0dp"
@@ -18,7 +25,7 @@
     android:padding="2dp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/toolbar"
     tools:listitem="@layout/admin_user_recycler_item"
 
     />
